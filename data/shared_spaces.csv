@@ -1,7 +1,7 @@
 observation_id,date,day_of_week,time,time_period,space,space_type,people_count,count_type,noise_level,main_activity,context_notes
-1,2026-09-27,Sunday,6-9 PM,Evening,Study Lounge 1,Study,1,Exact,Unknown,Studying/Working,
-2,2026-09-27,Sunday,6-9 PM,Evening,Study Lounge 2,Study,2,Exact,Unknown,Studying/Working,
-3,2026-09-27,Sunday,6-9 PM,Evening,Gym,Fitness,4,Exact,Unknown,Exercising,Weekend
+1,2026-09-27,Sunday,6-9 PM,Evening,Study Lounge 1,Study,1,Exact,Quiet,Studying/Working,
+2,2026-09-27,Sunday,6-9 PM,Evening,Study Lounge 2,Study,2,Exact,Quiet,Studying/Working,
+3,2026-09-27,Sunday,6-9 PM,Evening,Gym,Fitness,4,Exact,Moderate,Exercising,Weekend
 4,2026-09-27,Sunday,6-9 PM,Evening,Common Area,Social/Common,5,Exact,Loud,Recreation,People playing table tennis
 5,2026-09-28,Monday,5 PM,Evening,Study Lounge 1,Study,0,Exact,Quiet,None,Space empty
 6,2026-09-28,Monday,5 PM,Evening,Study Lounge 2,Study,2,Exact,Quiet,Studying/Working,
@@ -22,7 +22,7 @@ observation_id,date,day_of_week,time,time_period,space,space_type,people_count,c
 21,2026-10-01,Thursday,6 PM,Evening,Study Lounge 1,Study,0,Exact,Unknown,None,Event occurring in connected main lobby
 22,2026-10-01,Thursday,6 PM,Evening,Study Lounge 2,Study,0,Exact,Unknown,None,Event occurring in connected main lobby
 23,2026-10-01,Thursday,6 PM,Evening,Gym,Fitness,5,Exact,Moderate,Exercising,
-24,2026-10-01,Thursday,6 PM,Evening,Common Area,Social/Common,14,Estimated,Loud,Event/Social,Approximately 14 people; spinal screening and mini chair massage event in main lobby
+24,2026-10-01,Thursday,6 PM,Evening,Common Area,Social/Common,14,Exact,Loud,Event/Social,14 people present at observation time; people were coming and going during the event
 25,2026-10-03,Saturday,5:50 PM,Evening,Gym,Fitness,2,Exact,Moderate,Exercising,Background gym music; weekend
 26,2026-10-03,Saturday,5:50 PM,Evening,Study Lounge 1,Study,0,Exact,Quiet,None,Space empty; weekend
 27,2026-10-03,Saturday,5:50 PM,Evening,Study Lounge 2,Study,2,Exact,Quiet,Studying/Working,Weekend
