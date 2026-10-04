@@ -54,9 +54,13 @@ The people count, noise level, and main activity were generally easy to record b
 
 Context also became useful during collection. Some observations took place under conditions that could be relevant when interpreting the data, such as heavy rain or an event in the main lobby. I kept these details in `context_notes` rather than assuming that they caused the observed differences.
 
+As the dataset developed, I also refined the domain questions to better match the variation captured by the observations. The initial questions emphasized time of day, while the final questions broaden this focus to comparisons across spaces and sessions, relationships among occupancy, noise and activity, and observations that stand out from typical usage. This allows the analysis to use the spatial, temporal, activity, and contextual variation represented in the final dataset while keeping conclusions within the scope of the observations.
+
 ### Revisions to the Collection Procedure
 
 After the early observations, I made the collection procedure more consistent. I recorded a more specific time whenever possible, continued using the same noise categories across spaces, used None for the main activity when a space was empty, and used Mixed when multiple activities were occurring without one clear dominant activity. I also kept contextual information separate from the main activity so that unusual conditions could be documented without treating them as explanations for the observations.
+
+During collection, I considered whether people counts needed to distinguish between exact and estimated values. In the final dataset, each `people_count` represents the number of people present at the observation snapshot, including the event observation. Because all final counts use the same measurement approach, a separate `count_type` attribute was unnecessary and was not retained in the final schema.
 
 The revised procedure still treated one observation as one snapshot of one space. During each observation session, I checked the same four spaces and recorded the people count, noise level, main activity, and any relevant context.
 
@@ -72,9 +76,8 @@ The revised procedure still treated one observation as one snapshot of one space
 | space | Categorical | Shared space being observed | Common Area |
 | space_type | Categorical | General purpose of the space | Social/Common |
 | people_count | Quantitative | Number of people present at the observation time | 14 |
-| count_type | Categorical | Whether the recorded count was exact or estimated | Exact |
-| noise_level | Ordinal | Quiet, Moderate, or Loud | Moderate |
-| main_activity | Categorical | Main activity in the space, including None or Mixed when appropriate | Mixed |
+| noise_level | Ordinal | Observed noise level: Quiet, Moderate, or Loud | Moderate |
+| main_activity | Categorical | Main activity: Studying/Working, Exercising, Recreation, Reading, Event/Social, Mixed, or None | Mixed |
 | context_notes | Text | Additional conditions or details useful for interpreting the observation | Heavy rain outside |
 
 ## Task 3: Final Dataset and Domain Questions
@@ -90,6 +93,9 @@ The spaces also differ in size and capacity. I estimated the capacity of the stu
 ### Reflection on the Data
 
 Turning the observations into structured data required simplifying what was happening in each space. People count was straightforward, but activity and noise sometimes required judgment. A space could also have multiple activities happening at once, which is why I added Mixed as an activity category. I used context notes for information such as the event and heavy rain because these details could help explain why an observation was unusual, but I did not assume that they caused the differences I observed.
+
+Representing each visit as a snapshot necessarily abstracts away information between observation times, such as how long individuals remained in a space, whether they arrived as groups, and how usage changed continuously between snapshots. These details are therefore outside the scope of the dataset rather than inferred from the recorded observations.
+
 Overall, converting the observations into a structured dataset helped me identify which attributes could be recorded consistently and which required more judgment.
 
 ### Revised Domain Questions
@@ -103,13 +109,44 @@ Overall, converting the observations into a structured dataset helped me identif
 3. **How are noise level, number of people, and the type of activity related?**  
    This uses `noise_level`, `people_count`, and `main_activity`. For example, similar numbers of people may produce different noise levels depending on what they are doing.
 
-4. **How do the main activities differ across the four shared spaces?**  
-   This uses `space` and `main_activity` to compare how each area was being used.
+4. **Which shared spaces show more consistent activity patterns, and which are used for a wider variety of activities?**  
+   This uses `space` and `main_activity` to compare the distribution and variety of activities observed in each space.
 
 5. **Which individual observations stand out from the usual usage of each space?**  
    This uses `space`, `people_count`, `noise_level`, and `context_notes` to identify unusual observations while keeping contextual conditions separate from causal conclusions.
 
 ## Task 4: Abstract Tasks
+
+For each domain question, I translated the question into actions and targets. The actions describe what someone needs to accomplish using the visualization, while the targets describe the aspects of the data that are relevant to that goal.
+
+1. **Which shared spaces show the highest and lowest usage across the observed sessions?**
+   - **Actions:** Compare and identify.
+   - **Target:** Distribution and extremes of `people_count` across `space`.
+   - **Reasoning:** This question requires comparing multiple spaces and identifying which ones have the highest and lowest observed usage. Since usage is represented by the number of people present, the relevant target is the distribution of `people_count`, particularly its extremes across the different spaces.
+
+2. **How much does the number of people in each space vary across observation sessions?**
+   - **Actions:** Compare and summarize.
+   - **Target:** Distribution and trends in `people_count` across `space`, `date`, and `time`.
+   - **Reasoning:** This question is about how occupancy changes across multiple observations rather than finding one particular value. Comparing and summarizing the counts across sessions can show the overall pattern of usage and which spaces have more or less variation.
+
+3. **How are noise level, number of people, and the type of activity related?**
+   - **Actions:** Explore and compare.
+   - **Target:** Relationships or dependencies among `people_count`, `noise_level`, and `main_activity`.
+   - **Reasoning:** The relationship among these attributes is not known in advance, so the task is exploratory. Looking across multiple attributes can reveal whether different combinations of occupancy and activity are associated with different noise levels without assuming that one causes another.
+
+4. **Which shared spaces show more consistent activity patterns, and which are used for a wider variety of activities?**
+   - **Actions:** Compare and summarize.
+   - **Target:** Distribution and diversity of `main_activity` across `space`.
+   - **Reasoning:** This question requires comparing the activity categories observed within each space and summarizing their distributions. This can show whether a space is used primarily for one type of activity or supports a wider variety of activities.
+
+5. **Which individual observations stand out from the usual usage of each space?**
+   - **Actions:** Locate and identify.
+   - **Target:** Outliers and extremes in `people_count` and `noise_level` within each `space`.
+   - **Reasoning:** The particular observations that stand out are not known beforehand, so they first need to be located and then identified. After locating them, `context_notes` can provide additional context for interpreting those observations without assuming that the contextual condition caused the unusual value.
+
+### Reflection on Task Abstraction
+
+Translating the domain questions into abstract tasks made me separate what I wanted to learn from how I might eventually visualize it. I initially thought about the questions mainly in terms of the apartment spaces and how they were being used, but the abstraction showed that the underlying goals involve comparing distributions, examining trends, exploring relationships, and locating unusual observations. It also made the third question stand out as more exploratory because the relationship among people count, noise level, and activity is not known in advance. Thinking in terms of actions and targets gives me a clearer basis for evaluating visualization designs later instead of choosing a chart type first.
 
 ## Task 5: Visualization Sketches and Refinement
 
