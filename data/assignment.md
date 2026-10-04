@@ -150,6 +150,18 @@ Translating the domain questions into abstract tasks made me separate what I wan
 
 ## Task 5: Visualization Sketches and Refinement
 
+### Sketch 1: Shared Space Usage Across Observation Sessions
+
+![Sketch 1: Shared Space Usage Across Observation Sessions](sketches/CS%20424-2.jpg)
+
+I designed this sketch as an overview of how shared-space usage varied across observation sessions, mainly addressing Q1, Q2, and Q5. It represents space, observation session, `people_count`, and `noise_level`. Each cell is a mark representing one observation; horizontal and vertical position encode session and space, luminance encodes people count, shape distinguishes noise level, and text gives the exact count. The combination of shading and exact values made differences in occupancy easy to compare, and unusually high observations such as 10 people in the gym and 14 in the common area stood out clearly. However, the noise symbols were less visually prominent than the occupancy shading, and the design does not represent `main_activity`. Overall, this sketch works well for comparing occupancy patterns and locating unusual observations, but it is more limited for investigating relationships involving activity.
+
+### Sketch 2: Activity, Noise, and Occupancy
+
+![Sketch 2: Activity, Noise, and Occupancy](sketches/sketch2.jpg)
+
+I designed this sketch to explore Q3, focusing on the relationship among `main_activity`, `noise_level`, and `people_count`. Each observation is represented by a circle positioned according to its activity and noise category. Horizontal position encodes `noise_level`, vertical position encodes `main_activity`, circle size encodes `people_count`, and text gives the exact count. This design made it easy to see which activity and noise combinations occurred in the observations and made larger counts such as 10 and 14 visually prominent. However, comparing similar people counts using circle size was less precise than comparing exact positions, so I included the numerical values with the circles. Cells containing many observations, particularly Studying/Working with Quiet noise and None with Quiet noise, also became more crowded. Unlike Sketch 1, this design removes space and observation session to focus specifically on the relationship among activity, noise, and occupancy.
+
 ## Task 6: Design Comparison and Reflection
 
 ## Task 7: Project Process
