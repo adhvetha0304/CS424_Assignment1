@@ -164,7 +164,7 @@ I designed this sketch to explore Q3, focusing on the relationship among `main_a
 
 ### Sketch 3: Observed Activity Composition by Shared Space
 
-![Sketch 3: Observed Activity Composition by Shared Space](sketches/sketch3.jpg)
+![Sketch 3: Observed Activity Composition by Shared Space](sketches/sketch%203.jpg)
 
 I designed this sketch to explore Q4 by comparing the activity composition of the four shared spaces. Each horizontal bar represents one space and is divided into seven equal segments because each space was observed seven times. Each segment represents one observation. The text inside each segment represents the recorded `main_activity`, with `N` representing `None` when the space was empty.
 
