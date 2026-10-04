@@ -172,6 +172,12 @@ The attributes shown are `space` and `main_activity`. The marks are rectangular 
 
 This design makes it easy to compare spaces with relatively consistent activity patterns against spaces with a wider variety of observed activities. Grouping identical activity states together emphasizes composition and frequency across spaces. However, this means the chronological order of the observations is not preserved, so the design is less useful for examining when particular activities occurred. Unlike Sketch 1, which emphasizes occupancy across sessions, and Sketch 2, which focuses on relationships among activity, noise, and people count, this sketch focuses specifically on the distribution and diversity of activities across spaces.
 
+### Comparing the Initial Sketches and Refinement Direction
+
+The three initial sketches emphasized different aspects of the dataset. Sketch 1 provided the clearest overall comparison of occupancy across spaces and observation sessions, but its noise encoding was less visually prominent and it did not include contextual information. Sketch 2 focused more directly on the relationship among activity, noise, and people count, but comparing quantitative values through circle size was less precise and cells containing several observations became crowded. Sketch 3 simplified the view to activity composition across spaces, which made differences in activity diversity easier to compare, but grouping observations by activity removed their chronological order.
+
+Based on these differences, I chose to refine the designs in two directions. The first refinement keeps the useful overview structure of Sketch 1 while improving the visibility of noise level and adding relevant contextual annotations. The second refinement focuses on improving the relationship view from Sketch 2 by representing people count with position rather than circle size and incorporating space more directly.
+
 ### Refined Sketch 1: Shared Space Usage with Noise and Context
 
 ![Refined Sketch 1: Shared Space Usage with Noise and Context](sketches/sketch%204.jpg)
@@ -183,6 +189,18 @@ This design addresses Q1, Q2, and Q5. The attributes shown are `space`, `observa
 The refined design also includes contextual annotations for observations where additional information may be useful. The Common Area observation with 14 people is annotated with the event occurring in the connected main lobby, while the October 1, 9 PM session is annotated with heavy rain. These notes provide context for interpreting unusual observations without assuming that the contextual conditions caused the observed values.
 
 The expected benefit of this refinement is that occupancy differences and unusual observations remain easy to identify while `noise_level` becomes more visually noticeable than in the original sketch. The context annotations also make Q5 easier to investigate by linking unusual observations to recorded contextual information without making causal claims.
+
+### Refined Sketch 2: Activity, Occupancy, and Noise by Space
+
+![Refined Sketch 2: Activity, Occupancy, and Noise by Space](sketches/sketch%205.jpg)
+
+I refined Sketch 2 because the original activity-by-noise bubble matrix made relationships among `main_activity`, `noise_level`, and `people_count` visible, but quantitative comparison through circle size was less precise and several cells became crowded when multiple observations had the same activity and noise combination. The refined design keeps the same relationship-focused goal while replacing circle size with horizontal position and introducing separate panels for each space.
+
+This design addresses Q3 and Q4. The attributes shown are `space`, `people_count`, `main_activity`, and `noise_level`. Each observation is represented by a point. Horizontal position encodes `people_count`, vertical position encodes `main_activity`, separate panels encode `space`, and point shape encodes `noise_level`, with circles representing Quiet, triangles representing Moderate, and stars representing Loud. All four panels use the same people-count scale so that occupancy values can be compared consistently across spaces.
+
+When multiple observations share the same people count and activity, the points are slightly offset so that each observation remains visible. The offset is only used to prevent overlap and does not encode an additional data attribute.
+
+The expected benefit of this refinement is that people-count differences can be compared more precisely through position than through circle size, while activity and noise patterns can still be explored across the four spaces. Separating the spaces into panels also makes it easier to compare whether different spaces show consistent or varied activity and noise patterns.
 
 ## Task 6: Design Comparison and Reflection
 
