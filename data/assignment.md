@@ -172,6 +172,18 @@ The attributes shown are `space` and `main_activity`. The marks are rectangular 
 
 This design makes it easy to compare spaces with relatively consistent activity patterns against spaces with a wider variety of observed activities. Grouping identical activity states together emphasizes composition and frequency across spaces. However, this means the chronological order of the observations is not preserved, so the design is less useful for examining when particular activities occurred. Unlike Sketch 1, which emphasizes occupancy across sessions, and Sketch 2, which focuses on relationships among activity, noise, and people count, this sketch focuses specifically on the distribution and diversity of activities across spaces.
 
+### Refined Sketch 1: Shared Space Usage with Noise and Context
+
+![Refined Sketch 1: Shared Space Usage with Noise and Context](sketches/sketch%204.jpg)
+
+I refined Sketch 1 because the original matrix made differences in `people_count` easy to compare, but the noise-level symbols were less visually prominent and contextual information was not shown directly. The refined version keeps the same space-by-session matrix while changing the noise encoding and adding selected contextual annotations.
+
+This design addresses Q1, Q2, and Q5. The attributes shown are `space`, `observation_session`, `people_count`, `noise_level`, and `context_notes`. Each cell represents one observation. Horizontal position encodes observation session, vertical position encodes space, luminance/shading encodes `people_count`, and text gives the exact people count. Noise level is represented using an inner outline around the count: no inner outline represents Quiet, a medium-thickness inner outline represents Moderate, and a thicker inner outline represents Loud.
+
+The refined design also includes contextual annotations for observations where additional information may be useful. The Common Area observation with 14 people is annotated with the event occurring in the connected main lobby, while the October 1, 9 PM session is annotated with heavy rain. These notes provide context for interpreting unusual observations without assuming that the contextual conditions caused the observed values.
+
+The expected benefit of this refinement is that occupancy differences and unusual observations remain easy to identify while `noise_level` becomes more visually noticeable than in the original sketch. The context annotations also make Q5 easier to investigate by linking unusual observations to recorded contextual information without making causal claims.
+
 ## Task 6: Design Comparison and Reflection
 
 ## Task 7: Project Process
