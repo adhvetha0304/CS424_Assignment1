@@ -79,6 +79,36 @@ The revised procedure still treated one observation as one snapshot of one space
 
 ## Task 3: Final Dataset and Domain Questions
 
+### Final Dataset
+
+My final dataset contains 28 observations collected across five dates and seven observation sessions. During each session, I observed the same four spaces: Study Lounge 1, Study Lounge 2, the gym, and the common area. The observations cover morning, afternoon, and evening periods as well as both weekdays and weekends.
+
+The dataset includes information about the number of people present, noise level, main activity, location, date and time, and relevant context. The observations provide variation across both space and time. Evening observations are more heavily represented in the dataset, so comparisons across time periods should be interpreted within the scope of the collected observations rather than as general usage patterns for the building.
+
+The spaces also differ in size and capacity. I estimated the capacity of the study lounges and common area based on the available chairs, seats, and sofas, but I could not determine a comparable capacity for the gym. To keep comparisons consistent across all four spaces, I used the observed number of people rather than occupancy percentages.
+
+### Reflection on the Data
+
+Turning the observations into structured data required simplifying what was happening in each space. People count was straightforward, but activity and noise sometimes required judgment. A space could also have multiple activities happening at once, which is why I added Mixed as an activity category. I used context notes for information such as the event and heavy rain because these details could help explain why an observation was unusual, but I did not assume that they caused the differences I observed.
+Overall, converting the observations into a structured dataset helped me identify which attributes could be recorded consistently and which required more judgment.
+
+### Revised Domain Questions
+
+1. **Which shared spaces show the highest and lowest usage across the observed sessions?**  
+   This uses `space` and `people_count` to compare how frequently the four spaces were being used.
+
+2. **How much does the number of people in each space vary across observation sessions?**  
+   This uses `space`, `date`, `time`, and `people_count` to identify spaces with relatively stable or changing usage.
+
+3. **How are noise level, number of people, and the type of activity related?**  
+   This uses `noise_level`, `people_count`, and `main_activity`. For example, similar numbers of people may produce different noise levels depending on what they are doing.
+
+4. **How do the main activities differ across the four shared spaces?**  
+   This uses `space` and `main_activity` to compare how each area was being used.
+
+5. **Which individual observations stand out from the usual usage of each space?**  
+   This uses `space`, `people_count`, `noise_level`, and `context_notes` to identify unusual observations while keeping contextual conditions separate from causal conclusions.
+
 ## Task 4: Abstract Tasks
 
 ## Task 5: Visualization Sketches and Refinement
