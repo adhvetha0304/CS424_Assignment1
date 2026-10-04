@@ -162,6 +162,16 @@ I designed this sketch as an overview of how shared-space usage varied across ob
 
 I designed this sketch to explore Q3, focusing on the relationship among `main_activity`, `noise_level`, and `people_count`. Each observation is represented by a circle positioned according to its activity and noise category. Horizontal position encodes `noise_level`, vertical position encodes `main_activity`, circle size encodes `people_count`, and text gives the exact count. This design made it easy to see which activity and noise combinations occurred in the observations and made larger counts such as 10 and 14 visually prominent. However, comparing similar people counts using circle size was less precise than comparing exact positions, so I included the numerical values with the circles. Cells containing many observations, particularly Studying/Working with Quiet noise and None with Quiet noise, also became more crowded. Unlike Sketch 1, this design removes space and observation session to focus specifically on the relationship among activity, noise, and occupancy.
 
+### Sketch 3: Observed Activity Composition by Shared Space
+
+![Sketch 3: Observed Activity Composition by Shared Space](sketches/sketch3.jpg)
+
+I designed this sketch to explore Q4 by comparing the activity composition of the four shared spaces. Each horizontal bar represents one space and is divided into seven equal segments because each space was observed seven times. Each segment represents one observation. The text inside each segment represents the recorded `main_activity`, with `N` representing `None` when the space was empty.
+
+The attributes shown are `space` and `main_activity`. The marks are rectangular bar segments. Vertical position encodes `space`, while the number and contiguous horizontal extent of segments with the same label represent the frequency of each observed activity state. Text labels identify the activity represented by each segment.
+
+This design makes it easy to compare spaces with relatively consistent activity patterns against spaces with a wider variety of observed activities. Grouping identical activity states together emphasizes composition and frequency across spaces. However, this means the chronological order of the observations is not preserved, so the design is less useful for examining when particular activities occurred. Unlike Sketch 1, which emphasizes occupancy across sessions, and Sketch 2, which focuses on relationships among activity, noise, and people count, this sketch focuses specifically on the distribution and diversity of activities across spaces.
+
 ## Task 6: Design Comparison and Reflection
 
 ## Task 7: Project Process
