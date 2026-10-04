@@ -44,6 +44,39 @@ I did not record names, faces, private conversations, or any other identifying i
 
 ## Task 2: Pilot Collection and Revision
 
+### Pilot Collection
+
+I used my first few observation sessions as a pilot for the collection process. These early observations helped me see whether the attributes I had chosen were practical to record and what needed to be more consistent. I continued using these observations in the final dataset because they were still compatible with the revised collection method.
+
+One issue I noticed from my first session was the way I recorded time. For the September 27 observations, I only recorded that the observations took place sometime between 6 and 9 PM rather than recording the specific time. After this first session, I realized that a more precise time would be more useful for comparing observations, so I recorded specific observation times in later sessions.
+
+The people count, noise level, and main activity were generally easy to record because they could be observed directly during each visit. However, some spaces could have more than one activity occurring at the same time. For example, the common area could have people working while others were waiting for coffee or doing something recreational. Because of this, I allowed the main activity to be recorded as Mixed when there was not one clear activity representing the space.
+
+Context also became useful during collection. Some observations took place under conditions that could be relevant when interpreting the data, such as heavy rain or an event in the main lobby. I kept these details in `context_notes` rather than assuming that they caused the observed differences.
+
+### Revisions to the Collection Procedure
+
+After the early observations, I made the collection procedure more consistent. I recorded a more specific time whenever possible, continued using the same noise categories across spaces, used None for the main activity when a space was empty, and used Mixed when multiple activities were occurring without one clear dominant activity. I also kept contextual information separate from the main activity so that unusual conditions could be documented without treating them as explanations for the observations.
+
+The revised procedure still treated one observation as one snapshot of one space. During each observation session, I checked the same four spaces and recorded the people count, noise level, main activity, and any relevant context.
+
+### Revised Data Dictionary
+
+| Attribute | Type | Description | Example |
+|---|---|---|---|
+| observation_id | Identifier | Unique number for each observation | 1 |
+| date | Temporal | Date of the observation | 2026-09-27 |
+| day_of_week | Categorical | Day of the observation | Sunday |
+| time | Temporal | Recorded time or approximate time range | 5:50 PM |
+| time_period | Ordinal/Categorical | General period of the day | Evening |
+| space | Categorical | Shared space being observed | Common Area |
+| space_type | Categorical | General purpose of the space | Social/Common |
+| people_count | Quantitative | Number of people present at the observation time | 14 |
+| count_type | Categorical | Whether the recorded count was exact or estimated | Exact |
+| noise_level | Ordinal | Quiet, Moderate, or Loud | Moderate |
+| main_activity | Categorical | Main activity in the space, including None or Mixed when appropriate | Mixed |
+| context_notes | Text | Additional conditions or details useful for interpreting the observation | Heavy rain outside |
+
 ## Task 3: Final Dataset and Domain Questions
 
 ## Task 4: Abstract Tasks
