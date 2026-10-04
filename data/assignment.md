@@ -204,4 +204,18 @@ The expected benefit of this refinement is that people-count differences can be 
 
 ## Task 6: Design Comparison and Reflection
 
+The three initial sketches explored different aspects of the dataset. Sketch 1 gave the clearest overall view of occupancy across spaces and sessions because the shading and exact counts made high and low values easy to compare. Its main weakness was that noise level was less noticeable, so the first refined sketch kept the matrix structure but used inner-outline thickness for noise and added contextual annotations for unusual observations.
+
+Sketch 2 focused on the relationship among `main_activity`, `noise_level`, and `people_count`. It was useful for exploring Q3, but circle size was less precise for comparing similar counts and some cells became crowded. Refined Sketch 2 improved this by using horizontal position for `people_count` and separating the four spaces into panels. This made the quantitative comparisons clearer while still keeping activity and noise visible.
+
+Sketch 3 took a simpler approach by showing activity composition across spaces. It made differences in activity consistency and variety easy to compare, but grouping observations by activity removed their chronological order. That tradeoff was acceptable because this sketch was meant to summarize activity distribution rather than show when each activity occurred.
+
+The designs use noticeably different structures: a space-by-session matrix, an activity-noise relationship view, a segmented composition view, and a faceted point-based refinement. At first, I considered another session-based design, but it felt too similar to Sketch 1, so I changed direction and focused the later sketches on relationships and activity composition instead. This helped expand the design space rather than repeatedly showing the same attributes in slightly different charts.
+
+The sketching process also showed me that one visualization does not need to answer every domain question. The matrix works well for overview, variation, and unusual observations, while the relationship views are better for comparing several attributes at once. The composition design is simpler and more effective for summarizing categorical activity patterns. The refined sketches were therefore based on specific limitations in the initial designs rather than only making them look more polished.
+
+The way the data was collected also affected the designs. Each observation is only a snapshot, evening observations are more common than morning or afternoon observations, and comparable capacity information was not available for every space. Because of this, I avoided showing the observations as a continuous time series, avoided causal conclusions, and used raw `people_count` rather than occupancy percentages. Noise and activity were also based on observed categories rather than instrument measurements, so the visualizations should not imply more precision than the data contains.
+
+With only 28 observations, all of the sketches remain readable, but they would scale differently with more data. The original bubble matrix would become crowded fairly quickly, while the session matrix would require more columns as additional sessions were collected. The activity-composition view would scale better for summarizing frequencies, although it would continue to sacrifice information about individual observation order. Overall, the sketching process helped me think more about matching the visual encoding to the question instead of trying to find one chart that showed everything.
+
 ## Task 7: Project Process
