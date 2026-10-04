@@ -152,19 +152,19 @@ Translating the domain questions into abstract tasks made me separate what I wan
 
 ### Sketch 1: Shared Space Usage Across Observation Sessions
 
-![Sketch 1: Shared Space Usage Across Observation Sessions](sketches/CS%20424-2.jpg)
+![Sketch 1: Shared Space Usage Across Observation Sessions](../sketches/CS%20424-2.jpg)
 
 I designed this sketch as an overview of how shared-space usage varied across observation sessions, mainly addressing Q1, Q2, and Q5. It represents space, observation session, `people_count`, and `noise_level`. Each cell is a mark representing one observation; horizontal and vertical position encode session and space, luminance encodes people count, shape distinguishes noise level, and text gives the exact count. The combination of shading and exact values made differences in occupancy easy to compare, and unusually high observations such as 10 people in the gym and 14 in the common area stood out clearly. However, the noise symbols were less visually prominent than the occupancy shading, and the design does not represent `main_activity`. Overall, this sketch works well for comparing occupancy patterns and locating unusual observations, but it is more limited for investigating relationships involving activity.
 
 ### Sketch 2: Activity, Noise, and Occupancy
 
-![Sketch 2: Activity, Noise, and Occupancy](sketches/sketch2.jpg)
+![Sketch 2: Activity, Noise, and Occupancy](../sketches/sketch2.jpg)
 
 I designed this sketch to explore Q3, focusing on the relationship among `main_activity`, `noise_level`, and `people_count`. Each observation is represented by a circle positioned according to its activity and noise category. Horizontal position encodes `noise_level`, vertical position encodes `main_activity`, circle size encodes `people_count`, and text gives the exact count. This design made it easy to see which activity and noise combinations occurred in the observations and made larger counts such as 10 and 14 visually prominent. However, comparing similar people counts using circle size was less precise than comparing exact positions, so I included the numerical values with the circles. Cells containing many observations, particularly Studying/Working with Quiet noise and None with Quiet noise, also became more crowded. Unlike Sketch 1, this design removes space and observation session to focus specifically on the relationship among activity, noise, and occupancy.
 
 ### Sketch 3: Observed Activity Composition by Shared Space
 
-![Sketch 3: Observed Activity Composition by Shared Space](sketches/sketch%203.jpg)
+![Sketch 3: Observed Activity Composition by Shared Space](../sketches/sketch%203.jpg)
 
 I designed this sketch to explore Q4 by comparing the activity composition of the four shared spaces. Each horizontal bar represents one space and is divided into seven equal segments because each space was observed seven times. Each segment represents one observation. The text inside each segment represents the recorded `main_activity`, with `N` representing `None` when the space was empty.
 
@@ -180,7 +180,7 @@ Based on these differences, I chose to refine the designs in two directions. The
 
 ### Refined Sketch 1: Shared Space Usage with Noise and Context
 
-![Refined Sketch 1: Shared Space Usage with Noise and Context](sketches/sketch%204.jpg)
+![Refined Sketch 1: Shared Space Usage with Noise and Context](../sketches/sketch%204.jpg)
 
 I refined Sketch 1 because the original matrix made differences in `people_count` easy to compare, but the noise-level symbols were less visually prominent and contextual information was not shown directly. The refined version keeps the same space-by-session matrix while changing the noise encoding and adding selected contextual annotations.
 
@@ -192,7 +192,7 @@ The expected benefit of this refinement is that occupancy differences and unusua
 
 ### Refined Sketch 2: Activity, Occupancy, and Noise by Space
 
-![Refined Sketch 2: Activity, Occupancy, and Noise by Space](sketches/sketch%205.jpg)
+![Refined Sketch 2: Activity, Occupancy, and Noise by Space](../sketches/sketch%205.jpg)
 
 I refined Sketch 2 because the original activity-by-noise bubble matrix made relationships among `main_activity`, `noise_level`, and `people_count` visible, but quantitative comparison through circle size was less precise and several cells became crowded when multiple observations had the same activity and noise combination. The refined design keeps the same relationship-focused goal while replacing circle size with horizontal position and introducing separate panels for each space.
 
