@@ -102,11 +102,9 @@ The temporal coverage is uneven. Of the 28 observations, 20 were collected durin
 
 ### Reflection on the Data
 
-Turning the observations into structured data required simplifying what was happening in each space. People count was straightforward, but activity and noise sometimes required judgment. A space could also have multiple activities happening at once, which is why I added Mixed as an activity category. I used context notes for information such as the event and heavy rain because these details could provide useful context when interpreting an unusual observation, without assuming that they caused the differences I observed.
+Turning the observations into structured data required simplifying what was happening in each space. `people_count` was straightforward, while `main_activity` and `noise_level` sometimes required judgment. I used `Mixed` when no single activity clearly represented the space, and kept conditions such as the event and heavy rain in `context_notes` rather than treating them as causes.
 
-Representing each visit as a snapshot necessarily abstracts away information between observation times, such as how long individuals remained in a space, whether they arrived as groups, and how usage changed continuously between snapshots. These details are therefore outside the scope of the dataset rather than inferred from the recorded observations.
-
-Overall, converting the observations into a structured dataset helped me identify which attributes could be recorded consistently and which required more judgment.
+Each row represents only one snapshot, so the dataset does not capture how long people stayed, whether they arrived in groups, or how usage changed between observations. Structuring the data helped me see which attributes could be recorded consistently and which involved more interpretation.
 
 ### Revised Domain Questions
 
@@ -156,7 +154,7 @@ For each domain question, I translated the question into actions and targets. Th
 
 ### Reflection on Task Abstraction
 
-Translating the domain questions into abstract tasks made me separate what I wanted to learn from how I might eventually visualize it. I initially thought about the questions mainly in terms of the apartment spaces and how they were being used, but the abstraction showed that the underlying goals involve comparing distributions, examining trends, exploring relationships, and locating unusual observations. It also made the third question stand out as more exploratory because the relationship among people count, noise level, and activity is not known in advance. Thinking in terms of actions and targets gives me a clearer basis for evaluating visualization designs later instead of choosing a chart type first.
+Task abstraction helped me separate what I wanted to learn from how I might visualize it. The questions became goals such as comparing distributions, exploring relationships, and locating unusual observations. Q3 was especially exploratory because the relationship among people count, noise, and activity was not known in advance.
 
 ## Task 5: Visualization Sketches and Refinement
 
@@ -176,72 +174,58 @@ I designed this sketch to explore Q3, focusing on the relationship among `main_a
 
 ![Sketch 3: Observed Activity Composition by Shared Space](../sketches/sketch%203.jpg)
 
-I designed this sketch to explore Q4 by comparing the activity composition of the four shared spaces. Each horizontal bar represents one space and is divided into seven equal segments because each space was observed seven times. Each segment represents one observation. The text inside each segment represents the recorded `main_activity`, with `N` representing `None` when the space was empty.
-
-The attributes shown are `space` and `main_activity`. The marks are rectangular bar segments. Vertical position encodes `space`, while the number and contiguous horizontal extent of segments with the same label represent the frequency of each observed activity state. Text labels identify the activity represented by each segment.
+I designed this sketch to explore Q4 by comparing activity composition across the four spaces. Each horizontal bar represents one space and contains seven equal rectangular segments, one for each observation. Vertical position encodes `space`, while the number of segments with each label represents the frequency of `main_activity`; `N` represents `None`.
 
 This design makes it easy to compare spaces with relatively consistent activity patterns against spaces with a wider variety of observed activities. Grouping identical activity states together emphasizes composition and frequency across spaces. However, this means the chronological order of the observations is not preserved, so the design is less useful for examining when particular activities occurred. Unlike Sketch 1, which emphasizes occupancy across sessions, and Sketch 2, which focuses on relationships among activity, noise, and people count, this sketch focuses specifically on the distribution and diversity of activities across spaces.
 
 
 ### Comparing the Initial Sketches and Refinement Direction
 
-The three initial sketches emphasized different aspects of the dataset. Sketch 1 provided the clearest overall comparison of occupancy across spaces and observation sessions, but its noise encoding was less visually prominent and it did not include contextual information. Sketch 2 focused more directly on the relationship among activity, noise, and people count, but comparing quantitative values through circle size was less precise and cells containing several observations became crowded. Sketch 3 simplified the view to activity composition across spaces, which made differences in activity diversity easier to compare, but grouping observations by activity removed their chronological order.
+The three initial sketches focused on different parts of the data. Sketch 1 was strongest for comparing occupancy across spaces and sessions, but its noise encoding was easy to overlook. Sketch 2 showed relationships among activity, noise, and people count, but circle size was less precise and some areas became crowded. Sketch 3 made activity differences across spaces easy to compare, but it removed observation order.
 
-Based on these differences, I chose to refine the designs in two directions. The first refinement keeps the useful overview structure of Sketch 1 while improving the visibility of noise level and adding relevant contextual annotations. The second refinement focuses on improving the relationship view from Sketch 2 by representing people count with position rather than circle size and incorporating space more directly.
+Based on these limitations, I refined Sketches 1 and 2. For Sketch 1, I kept the matrix structure but made noise more noticeable and added context. For Sketch 2, I replaced circle size with position and separated the observations by space.
 
 ### Refined Sketch 1: Shared Space Usage with Noise and Context
 
 ![Refined Sketch 1: Shared Space Usage with Noise and Context](../sketches/sketch%204.jpg)
 
-I refined Sketch 1 because the original matrix made differences in `people_count` easy to compare, but the noise-level symbols were less visually prominent and contextual information was not shown directly. The refined version keeps the same space-by-session matrix while changing the noise encoding and adding selected contextual annotations.
+I refined Sketch 1 because the matrix worked well for comparing `people_count`, but the noise symbols were not very noticeable and the design did not show context. The refined version still addresses Q1, Q2, and Q5.
 
-This design addresses Q1, Q2, and Q5. The attributes shown are `space`, `date` and `time` grouped into observation sessions, `people_count`, `noise_level`, and `context_notes`. Each cell represents one observation. Horizontal position encodes observation session, vertical position encodes space, luminance/shading encodes `people_count`, and text gives the exact people count. Noise level is represented using an inner outline around the count: no inner outline represents Quiet, a medium-thickness inner outline represents Moderate, and a thicker inner outline represents Loud.
+Each cell represents one observation. Horizontal position encodes observation session, vertical position encodes `space`, shading encodes `people_count`, and text gives the exact count. `noise_level` is shown using an inner outline: no outline for Quiet, a medium outline for Moderate, and a thicker outline for Loud. The design also includes `context_notes` for the 14-person event observation and the heavy-rain session.
 
-The refined design also includes contextual annotations for observations where additional information may be useful. The Common Area observation with 14 people is annotated with the event occurring in the connected main lobby, while the October 1, 9 PM session is annotated with heavy rain. These notes provide context for interpreting unusual observations without assuming that the contextual conditions caused the observed values.
-
-The expected benefit of this refinement is that occupancy differences and unusual observations remain easy to identify while `noise_level` becomes more visually noticeable than in the original sketch. The context annotations also make Q5 easier to investigate by linking unusual observations to recorded contextual information without making causal claims.
+This keeps the occupancy comparison from the original sketch while making noise and unusual observations easier to interpret. The context is included only as additional information and does not imply that it caused the observed values.
 
 ### Refined Sketch 2: Activity, Occupancy, and Noise by Space
 
 ![Refined Sketch 2: Activity, Occupancy, and Noise by Space](../sketches/sketch%205.jpg)
 
-I refined Sketch 2 because the original activity-by-noise bubble matrix made relationships among `main_activity`, `noise_level`, and `people_count` visible, but quantitative comparison through circle size was less precise and several cells became crowded when multiple observations had the same activity and noise combination. The refined design keeps the same relationship-focused goal while replacing circle size with horizontal position and introducing separate panels for each space.
+I refined Sketch 2 because circle size made similar people counts difficult to compare and some activity-noise combinations became crowded. The refined version addresses Q3 and Q4 by using position for `people_count` and separating the observations by space.
 
-This design addresses Q3 and Q4. The attributes shown are `space`, `people_count`, `main_activity`, and `noise_level`. Each observation is represented by a point. Horizontal position encodes `people_count`, vertical position encodes `main_activity`, separate panels encode `space`, and point shape encodes `noise_level`, with circles representing Quiet, triangles representing Moderate, and stars representing Loud. All four panels use the same people-count scale so that occupancy values can be compared consistently across spaces.
+Each observation is a point. Horizontal position encodes `people_count`, vertical position encodes `main_activity`, separate panels represent `space`, and point shape represents `noise_level`: circles for Quiet, triangles for Moderate, and stars for Loud. All panels use the same people-count scale. When points would overlap, they are slightly offset only to keep them visible.
 
-When multiple observations share the same people count and activity, the points are slightly offset so that each observation remains visible. The offset is only used to prevent overlap and does not encode an additional data attribute.
-
-The expected benefit of this refinement is that people-count differences can be compared more precisely through position than through circle size, while activity and noise patterns can still be explored across the four spaces. Separating the spaces into panels also makes it easier to compare whether different spaces show consistent or varied activity and noise patterns.
+Using position makes people-count comparisons more precise than the original bubble design, while the separate panels make activity and noise patterns easier to compare across spaces.
 
 ### Additional Sketch 4: Occupancy Distribution by Shared Space
 
 ![Sketch 4: Occupancy Distribution by Shared Space](../sketches/sketch%206.jpg)
 
-I added this sketch as another way to explore Q1, Q2, and Q5 without using the session-by-session matrix structure. Each row represents one shared space, and each point represents one observation. Horizontal position encodes `people_count`, vertical position encodes `space`, and shape and color hue encode `noise_level`. A horizontal range line shows the minimum and maximum observed people count for each space, and contextual annotations identify the heavy-rain session and the event observation.
+I added this sketch as another way to explore Q1, Q2, and Q5 without using the session-by-session matrix. Each point represents one observation. Horizontal position encodes `people_count`, vertical position encodes `space`, and shape and color hue encode `noise_level`. Range lines show the minimum and maximum observed count for each space, while annotations identify the heavy-rain and event observations.
 
-This design makes the distribution and amount of variation within each space easier to compare on one common quantitative scale. The study lounges have relatively narrow observed ranges, while the gym and common area show wider variation, and unusually high observations such as Gym = 10 and Common Area = 14 stand out clearly. Repeated observations with the same count are stacked so that they remain visible.
-
-Compared with Sketch 1, this design removes observation-session order and instead focuses on the distribution and spread of occupancy within each space. This makes count comparisons more direct, but it also means the visualization does not show when an observation occurred or what `main_activity` was recorded.
+Using one common quantitative scale makes differences in spread and extreme values easy to compare. The study lounges have narrow observed ranges, while the gym and common area vary more. Unlike Sketch 1, this design removes session order and focuses on the distribution of occupancy, so it does not show when an observation occurred or what activity was recorded.
 
 ## Task 6: Design Comparison and Reflection
 
-The three initial sketches explored different aspects of the dataset. Sketch 1 gave the clearest overall view of occupancy across spaces and sessions because the shading and exact counts made high and low values easy to compare. Its main weakness was that noise level was less noticeable, so the first refined sketch kept the matrix structure but used inner-outline thickness for noise and added contextual annotations for unusual observations.
+The initial sketches explored different parts of the dataset. Sketch 1 gave the clearest overview of occupancy across spaces and sessions, but its noise encoding was less noticeable. Refined Sketch 1 kept the matrix structure while making noise more visible and adding contextual annotations.
 
-Sketch 2 focused on the relationship among `main_activity`, `noise_level`, and `people_count`. It was useful for exploring Q3, but circle size was less precise for comparing similar counts and some cells became crowded. Refined Sketch 2 improved this by using horizontal position for `people_count` and separating the four spaces into panels. This made the quantitative comparisons clearer while still keeping activity and noise visible.
+Sketch 2 focused on the relationship among `main_activity`, `noise_level`, and `people_count`. It showed several attributes together, but circle size was not very precise and crowded cells were harder to read. Refined Sketch 2 improved this by using horizontal position for `people_count` and separating spaces into panels. Sketch 3 took a simpler approach by showing activity composition, which made differences in activity variety clear but removed chronological order.
 
-Sketch 3 took a simpler approach by showing activity composition across spaces. It made differences in activity consistency and variety easy to compare, but grouping observations by activity removed their chronological order. That tradeoff was acceptable because this sketch was meant to summarize activity distribution rather than show when each activity occurred.
+I later added the occupancy-distribution sketch to explore Q1, Q2, and Q5 through a different structure. It uses a common quantitative scale, so spread and extreme counts are easier to compare than in the matrix, but it does not preserve session order or activity information.
 
-I later added a fourth exploratory sketch that used a common quantitative axis to show the distribution of `people_count` within each space. Unlike the session matrix, this view removed observation order and emphasized spread and extreme values instead. This made occupancy comparisons more precise, although it sacrificed information about when each observation occurred and what activity was taking place.
+Overall, the sketches use several different structures: a session-space matrix, an activity-noise relationship view, a segmented composition view, an occupancy-distribution view, and a faceted point view. Trying these alternatives showed me that one visualization does not need to answer every question. Different views are more effective for overview, categorical composition, relationships, or precise quantitative comparison.
 
-The designs use noticeably different structures: a space-by-session matrix, an activity-noise relationship view, a segmented composition view, an occupancy-distribution view using a common quantitative axis, and a faceted point-based refinement. At first, I considered another session-based design, but it felt too similar to Sketch 1, so I changed direction and explored relationships, activity composition, and occupancy distribution using different visual structures instead.
+The collection process also affected the designs. Each observation is only a snapshot, most observations were collected in the evening, and comparable capacity information was not available for every space. Because of this, I avoided continuous time-series or causal interpretations and used raw `people_count` rather than occupancy percentages. If I collected the data again, I would add more morning, afternoon, and weekend sessions, record exact times from the beginning, and collect reliable capacity and measured-noise information if possible.
 
-The sketching process also showed me that one visualization does not need to answer every domain question. The matrix works well for overview, variation, and unusual observations, while the relationship views are better for comparing several attributes at once. The composition design is simpler and more effective for summarizing categorical activity patterns. The refined sketches were therefore based on specific limitations in the initial designs rather than only making them look more polished.
-
-The way the data was collected also affected the designs. Each observation is only a snapshot, evening observations are more common than morning or afternoon observations, and comparable capacity information was not available for every space. Because of this, I avoided showing the observations as a continuous time series, avoided causal conclusions, and used raw `people_count` rather than occupancy percentages. Noise and activity were also based on observed categories rather than instrument measurements, so the visualizations should not imply more precision than the data contains.
-
-If I collected the dataset again, I would include more morning, afternoon, and weekend sessions so that the temporal coverage was more balanced. I would also record an exact observation time from the beginning, obtain a reliable capacity measure for every space so that occupancy rates could be compared, and, if feasible, record a measured noise value in addition to the observational Quiet/Moderate/Loud categories.
-
-With only 28 observations, all of the sketches remain readable, but they would scale differently with more data. The original bubble matrix would become crowded fairly quickly, while the session matrix would require more columns as additional sessions were collected. The activity-composition view would scale better for summarizing frequencies, although it would continue to sacrifice information about individual observation order. The occupancy-distribution sketch would remain fairly readable with more observations, although repeated counts would require more stacking and could eventually become crowded. Overall, the sketching process helped me think more about matching the visual encoding to the question instead of trying to find one chart that showed everything.
+With 28 observations, all of the sketches remain readable. With more data, the bubble view would become crowded, the session matrix would require more columns, and the distribution view would require more stacking. The sketching process therefore helped me focus on matching the visual structure to the question rather than trying to put every attribute into one visualization.
 
 ## Task 7: Project Process
 I completed this assignment individually, so I was responsible for the data collection, organization, sketching, and documentation. During each observation session, I checked the same four shared spaces and recorded the same set of attributes so that the observations would remain as consistent as possible. The pilot stage helped me notice issues such as the lack of a precise time in the first session and the need for clearer rules for `None`, `Mixed`, and contextual notes. I then kept those revised definitions consistent for the remaining observations.
