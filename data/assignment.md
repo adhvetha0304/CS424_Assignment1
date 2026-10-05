@@ -224,6 +224,8 @@ I later added the occupancy-distribution sketch to explore Q1, Q2, and Q5 throug
 
 Overall, the sketches use several different structures: a session-space matrix, an activity-noise relationship view, a segmented composition view, an occupancy-distribution view, and a faceted point view. Trying these alternatives showed me that one visualization does not need to answer every question. Different views are more effective for overview, categorical composition, relationships, or precise quantitative comparison.
 
+Trying different structures felt more generative than making another session-based view, which started to feel repetitive, so changing direction helped me explore a wider design space.
+
 The collection process also affected the designs. Each observation is only a snapshot, most observations were collected in the evening, and comparable capacity information was not available for every space. Because of this, I avoided continuous time-series or causal interpretations and used raw `people_count` rather than occupancy percentages. If I collected the data again, I would add more morning, afternoon, and weekend sessions, record exact times from the beginning, and collect reliable capacity and measured-noise information if possible.
 
 With 28 observations, all of the sketches remain readable. With more data, the bubble view would become crowded, the session matrix would require more columns, and the distribution view would require more stacking. The sketching process therefore helped me focus on matching the visual structure to the question rather than trying to put every attribute into one visualization.
