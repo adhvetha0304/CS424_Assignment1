@@ -93,7 +93,7 @@ The revised procedure still treated one observation as one snapshot of one space
 My final dataset contains 28 observations collected across five dates and seven observation sessions. During each session, I observed the same four spaces: Study Lounge 1, Study Lounge 2, the gym, and the common area. The observations cover morning, afternoon, and evening periods as well as both weekdays and weekends.
 
 The final machine-readable dataset is available in [`shared_spaces.csv`](shared_spaces.csv).
-My original observation notes are included as a raw collection artifact: [`initial notes.png`](../raw/initial_notes.png).
+My original observation notes are included as a raw collection artifact: [`initial_notes.png`](../raw/initial_notes.png).
 
 The dataset includes information about the number of people present, noise level, main activity, location, date and time, and relevant context. The observations provide variation across both space and time. Evening observations are more heavily represented in the dataset, so comparisons across time periods should be interpreted within the scope of the collected observations rather than as general usage patterns for the building.
 
