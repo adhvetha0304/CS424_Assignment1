@@ -5,7 +5,8 @@ ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = ROOT / "data" / "shared_spaces.csv"
 OUTPUT_FILE = ROOT / "data" / "processed" / "shared_spaces_processed.csv"
 
-df = pd.read_csv(INPUT_FILE)
+# Reading the original data while keeping "None" as an activity value
+df = pd.read_csv(INPUT_FILE, keep_default_na=False)
 
 # Checking the important fields before processing
 if not df["observation_id"].is_unique:
@@ -14,7 +15,7 @@ if not df["observation_id"].is_unique:
 if df["people_count"].isna().any():
     raise ValueError("people_count contains missing values.")
 
-if df["noise_level"].isna().any():
+if df["noise_level"].eq("").any():
     raise ValueError("noise_level contains missing values.")
 
 # Removing extra spaces from text fields
@@ -34,15 +35,23 @@ for column in categorical_columns:
     )
 
 # Setting the date format consistently
-df["date"] = pd.to_datetime(df["date"], errors="raise").dt.strftime("%Y-%m-%d")
+df["date"] = pd.to_datetime(
+    df["date"],
+    errors="raise"
+).dt.strftime("%Y-%m-%d")
 
-# Filling empty activity values with None when the space was empty
-missing_activity = df["main_activity"].isna()
+# Checking that empty spaces already have None as their activity
+empty_spaces = df["people_count"] == 0
 
-if not (df.loc[missing_activity, "people_count"] == 0).all():
-    raise ValueError("Missing activity found for a non-empty observation.")
+if not (df.loc[empty_spaces, "main_activity"] == "None").all():
+    raise ValueError(
+        "An empty-space observation does not have None as its activity."
+    )
 
-df.loc[missing_activity, "main_activity"] = "None"
+if (df.loc[~empty_spaces, "main_activity"].isin(["", "None"])).any():
+    raise ValueError(
+        "A non-empty observation is missing its activity."
+    )
 
 # Adding an ID for each observation session
 session_order = [
@@ -66,9 +75,19 @@ df["session_id"] = [
 ]
 
 if df["session_id"].isna().any():
-    raise ValueError("An observation could not be assigned to a session.")
+    raise ValueError(
+        "An observation could not be assigned to a session."
+    )
 
 df["session_id"] = df["session_id"].astype(int)
+
+# Checking that every session contains all four spaces
+session_sizes = df.groupby("session_id")["space"].nunique()
+
+if not (session_sizes == 4).all():
+    raise ValueError(
+        "Every observation session should contain four spaces."
+    )
 
 # Adding a readable label for each session
 df["session_label"] = (
@@ -80,6 +99,7 @@ df["session_label"] = (
     + df["time"]
 )
 
+OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
 df.to_csv(OUTPUT_FILE, index=False)
 
 print(f"Processed {len(df)} observations.")
