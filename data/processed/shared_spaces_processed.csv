@@ -1,0 +1,29 @@
+observation_id,date,day_of_week,time,time_period,space,space_type,people_count,noise_level,main_activity,context_notes,session_id,session_label
+1,2026-09-27,Sunday,6-9 PM,Evening,Study Lounge 1,Study,1,Quiet,Studying/Working,,1,S1: 2026-09-27 6-9 PM
+2,2026-09-27,Sunday,6-9 PM,Evening,Study Lounge 2,Study,2,Quiet,Studying/Working,,1,S1: 2026-09-27 6-9 PM
+3,2026-09-27,Sunday,6-9 PM,Evening,Gym,Fitness,4,Moderate,Exercising,Weekend,1,S1: 2026-09-27 6-9 PM
+4,2026-09-27,Sunday,6-9 PM,Evening,Common Area,Social/Common,5,Moderate,Recreation,People playing table tennis,1,S1: 2026-09-27 6-9 PM
+5,2026-09-28,Monday,5 PM,Evening,Study Lounge 1,Study,0,Quiet,None,Space empty,2,S2: 2026-09-28 5 PM
+6,2026-09-28,Monday,5 PM,Evening,Study Lounge 2,Study,2,Quiet,Studying/Working,,2,S2: 2026-09-28 5 PM
+7,2026-09-28,Monday,5 PM,Evening,Gym,Fitness,3,Quiet,Exercising,Treadmill and strength training,2,S2: 2026-09-28 5 PM
+8,2026-09-28,Monday,5 PM,Evening,Common Area,Social/Common,8,Loud,Recreation,People playing table tennis and pool,2,S2: 2026-09-28 5 PM
+9,2026-09-29,Tuesday,6 AM,Morning,Study Lounge 1,Study,0,Quiet,None,Space empty,3,S3: 2026-09-29 6 AM
+10,2026-09-29,Tuesday,6 AM,Morning,Study Lounge 2,Study,0,Quiet,None,Space empty,3,S3: 2026-09-29 6 AM
+11,2026-09-29,Tuesday,6 AM,Morning,Gym,Fitness,10,Loud,Exercising,Treadmill StairMaster and strength training,3,S3: 2026-09-29 6 AM
+12,2026-09-29,Tuesday,6 AM,Morning,Common Area,Social/Common,5,Moderate,Mixed,Reading books or newspapers and having coffee,3,S3: 2026-09-29 6 AM
+13,2026-09-29,Tuesday,3 PM,Afternoon,Study Lounge 1,Study,1,Quiet,Studying/Working,,4,S4: 2026-09-29 3 PM
+14,2026-09-29,Tuesday,3 PM,Afternoon,Study Lounge 2,Study,0,Quiet,None,Space empty,4,S4: 2026-09-29 3 PM
+15,2026-09-29,Tuesday,3 PM,Afternoon,Gym,Fitness,2,Quiet,Exercising,Treadmill walking,4,S4: 2026-09-29 3 PM
+16,2026-09-29,Tuesday,3 PM,Afternoon,Common Area,Social/Common,4,Quiet,Studying/Working,People using laptops or phones,4,S4: 2026-09-29 3 PM
+17,2026-10-01,Thursday,9 PM,Evening,Study Lounge 1,Study,1,Quiet,Studying/Working,Heavy rain outside,6,S6: 2026-10-01 9 PM
+18,2026-10-01,Thursday,9 PM,Evening,Study Lounge 2,Study,1,Quiet,Studying/Working,Heavy rain outside,6,S6: 2026-10-01 9 PM
+19,2026-10-01,Thursday,9 PM,Evening,Gym,Fitness,0,Quiet,None,Heavy rain outside; space empty,6,S6: 2026-10-01 9 PM
+20,2026-10-01,Thursday,9 PM,Evening,Common Area,Social/Common,1,Quiet,Reading,Heavy rain outside; one person reading a book,6,S6: 2026-10-01 9 PM
+21,2026-10-01,Thursday,6 PM,Evening,Study Lounge 1,Study,0,Quiet,None,Event occurring in connected main lobby,5,S5: 2026-10-01 6 PM
+22,2026-10-01,Thursday,6 PM,Evening,Study Lounge 2,Study,0,Quiet,None,Event occurring in connected main lobby,5,S5: 2026-10-01 6 PM
+23,2026-10-01,Thursday,6 PM,Evening,Gym,Fitness,5,Moderate,Exercising,,5,S5: 2026-10-01 6 PM
+24,2026-10-01,Thursday,6 PM,Evening,Common Area,Social/Common,14,Loud,Event/Social,14 people present at observation time; people were coming and going during the event,5,S5: 2026-10-01 6 PM
+25,2026-10-03,Saturday,5:50 PM,Evening,Gym,Fitness,2,Moderate,Exercising,Background gym music; weekend,7,S7: 2026-10-03 5:50 PM
+26,2026-10-03,Saturday,5:50 PM,Evening,Study Lounge 1,Study,0,Quiet,None,Space empty; weekend,7,S7: 2026-10-03 5:50 PM
+27,2026-10-03,Saturday,5:50 PM,Evening,Study Lounge 2,Study,2,Quiet,Studying/Working,Weekend,7,S7: 2026-10-03 5:50 PM
+28,2026-10-03,Saturday,5:50 PM,Evening,Common Area,Social/Common,2,Quiet,Mixed,One person working and one waiting for coffee; weekend,7,S7: 2026-10-03 5:50 PM
