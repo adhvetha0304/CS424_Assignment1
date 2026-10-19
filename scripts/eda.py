@@ -125,3 +125,106 @@ plt.savefig(
 plt.close()
 
 print("Saved occupancy_by_session.png")
+
+# Exploring activity, noise level, and occupancy
+from matplotlib.lines import Line2D
+
+noise_colors = {
+    "Quiet": "steelblue",
+    "Moderate": "orange",
+    "Loud": "crimson",
+}
+
+activity_order = [
+    "None",
+    "Studying/Working",
+    "Exercising",
+    "Recreation",
+    "Mixed",
+    "Reading",
+    "Event/Social",
+]
+
+fig, axes = plt.subplots(
+    2, 2,
+    figsize=(13, 9),
+    sharey=True
+)
+
+for ax, space in zip(axes.flat, spaces):
+    subset = df[df["space"] == space]
+
+    activities = [
+        activity for activity in activity_order
+        if activity in subset["main_activity"].values
+    ]
+
+    repeated = {}
+
+    for _, row in subset.iterrows():
+        activity = row["main_activity"]
+        count = row["people_count"]
+
+        x = activities.index(activity)
+
+        # Separating observations with the same activity and count
+        key = (activity, count)
+        occurrence = repeated.get(key, 0)
+        repeated[key] = occurrence + 1
+
+        offsets = [0, -0.12, 0.12, -0.24, 0.24, -0.36, 0.36]
+
+        ax.scatter(
+            x + offsets[occurrence],
+            count,
+            color=noise_colors[row["noise_level"]],
+            s=75,
+            alpha=0.85
+        )
+
+    ax.set_xticks(range(len(activities)))
+    ax.set_xticklabels(activities, rotation=35, ha="right")
+    ax.set_title(space)
+    ax.grid(axis="y", alpha=0.2)
+
+# Using one consistent scale covering all observed counts
+for ax in axes.flat:
+    ax.set_ylim(-0.5, 15)
+
+fig.suptitle(
+    "Observed Occupancy by Activity and Noise Level",
+    fontsize=15
+)
+
+fig.supylabel("People Observed")
+fig.supxlabel("Main Activity")
+
+legend_items = [
+    Line2D(
+        [0], [0],
+        marker="o",
+        linestyle="None",
+        color=color,
+        markersize=9,
+        label=level
+    )
+    for level, color in noise_colors.items()
+]
+
+fig.legend(
+    handles=legend_items,
+    loc="upper center",
+    bbox_to_anchor=(0.5, 0.94),
+    ncol=3
+)
+
+plt.tight_layout(rect=[0, 0.03, 1, 0.9])
+
+plt.savefig(
+    OUTPUT_DIR / "occupancy_activity_noise.png",
+    dpi=200
+)
+
+plt.close()
+
+print("Saved occupancy_activity_noise.png")
