@@ -24,3 +24,31 @@ The processing preserves `None` as an existing activity value instead of treatin
 I added two derived attributes for working with the repeated observations. `session_id` assigns each collection session a number from 1 to 7, and `session_label` provides a readable label containing the session number, date, and recorded time. The script also checks that every session contains four observations representing all four shared spaces.
 
 I did not change the original Assignment 1 CSV. All processed data is written to a separate file so the original observations, transformation code, and visualization-ready data remain clearly separated.
+
+## Task 3: Explore the Data
+
+I created three exploratory visualizations using the processed dataset to look at differences in occupancy across spaces, changes between observation sessions, and how activity and noise level were related to the number of people observed.
+
+### Occupancy Across Shared Spaces
+
+![Occupancy by space](figures/eda/occupancy_by_space.png)
+
+The first plot shows all seven observations for each space instead of just comparing averages. Study Lounge 1 had counts between 0 and 1, while Study Lounge 2 had counts between 0 and 2. The Gym and Common Area showed more variation, with maximum counts of 10 and 14 respectively. However, using the same vertical scale for all four spaces made smaller differences between the study lounges harder to see. This made me realize that comparing all the spaces in one view might not be enough to understand the patterns within each space.
+
+### Occupancy Across Observation Sessions
+
+![Occupancy by session](figures/eda/occupancy_by_session.png)
+
+The heatmap helped me compare the four spaces within each observation session. The Gym had 10 people during the September 29 morning observation, while the Common Area had 14 people during the October 1 evening event. Later that same day, the Common Area had only 1 person. Looking at the individual sessions made it clear that averages alone could hide some of these differences. It also showed why keeping the session information was useful.
+
+### Activity and Noise Level
+
+![Occupancy by activity and noise](figures/eda/occupancy_activity_noise.png)
+
+The third plot explored occupancy along with the recorded activity and noise level. All observations in the study lounges were labeled Quiet, while the Gym and Common Area included Moderate and Loud observations. The highest recorded counts in the Gym (10) and Common Area (14) were both labeled Loud, although the limited dataset does not establish a general relationship between noise and occupancy.
+
+My initial plot had overlapping points, and the vertical axis did not show the full range of people counts. I corrected the scale and added small horizontal offsets to make repeated observations visible. Even after these changes, the shared scale made differences in the study lounges less noticeable. I also noticed that activity type was closely related to the purpose of each space, making comparisons across activities less straightforward. Some activities appeared only once or twice, which further limited what I could conclude.
+
+### What I Learned
+
+Overall, these plots showed me that individual observations and the context of each session are important, especially when looking at unusual counts. I also noticed a trade-off between comparing all four spaces using the same scale and being able to see smaller changes within spaces that usually had fewer people. For the next task, I want to explore different visualization designs that make it easier to compare occupancy across spaces while still allowing individual sessions and unusual observations to be examined.
