@@ -68,3 +68,60 @@ print(
         ["count", "min", "median", "mean", "max"]
     )
 )
+
+# Comparing occupancy across observation sessions
+session_data = df.pivot(
+    index="session_id",
+    columns="space",
+    values="people_count"
+).reindex(columns=spaces)
+
+session_labels = (
+    df.drop_duplicates("session_id")
+    .set_index("session_id")
+    .loc[session_data.index, "session_label"]
+)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+heatmap = ax.imshow(
+    session_data.to_numpy(),
+    cmap="YlGnBu",
+    aspect="auto",
+    vmin=0
+)
+
+# Adding the actual people counts inside each cell
+for i in range(len(session_data)):
+    for j in range(len(spaces)):
+        value = int(session_data.iloc[i, j])
+
+        ax.text(
+            j,
+            i,
+            str(value),
+            ha="center",
+            va="center",
+            color="white" if value >= 8 else "black"
+        )
+
+ax.set_xticks(range(len(spaces)))
+ax.set_xticklabels(spaces)
+
+ax.set_yticks(range(len(session_labels)))
+ax.set_yticklabels(session_labels)
+
+ax.set_title("Observed Occupancy by Session and Space")
+ax.set_xlabel("Shared Space")
+ax.set_ylabel("Observation Session")
+
+fig.colorbar(heatmap, ax=ax, label="People Observed")
+
+plt.tight_layout()
+plt.savefig(
+    OUTPUT_DIR / "occupancy_by_session.png",
+    dpi=200
+)
+plt.close()
+
+print("Saved occupancy_by_session.png")
