@@ -52,3 +52,51 @@ My initial plot had overlapping points, and the vertical axis did not show the f
 ### What I Learned
 
 Overall, these plots showed me that individual observations and the context of each session are important, especially when looking at unusual counts. I also noticed a trade-off between comparing all four spaces using the same scale and being able to see smaller changes within spaces that usually had fewer people. For the next task, I want to explore different visualization designs that make it easier to compare occupancy across spaces while still allowing individual sessions and unusual observations to be examined.
+
+## Task 4: Exploring Alternative Visualization Designs
+
+I implemented three visualization approaches to explore different aspects of the shared-space observations. Each design focuses on a different analytical task, allowing me to compare what information it communicates effectively and what limitations remain.
+
+### Direction A: Occupancy Distribution by Space
+
+![Occupancy distribution](figures/alternatives/alternative_a_distribution.png)
+
+This design focuses on comparing the occupancy distributions of the four shared spaces. It uses the space and people-count attributes, with horizontal position representing occupancy and vertical position separating the spaces. Individual observations are shown as circles, medians as diamonds, and observed ranges as horizontal lines.
+
+The chart makes it easy to compare typical occupancy and identify differences in the observed ranges. For example, the Common Area reaches 14 people, while the two study lounges have much lower counts. However, the shared scale makes differences between smaller occupancy values harder to see, and the chart does not show when observations occurred or provide their recorded context.
+
+I would keep this approach as a useful summary view, but it is not sufficient as the main visualization.
+
+### Direction B: Occupancy Across Observation Sessions
+
+![Session comparison](figures/alternatives/alternative_b_sessions.png)
+
+This design focuses on comparing how the recorded occupancy differs across seven observation sessions. It uses small-multiple line charts, with one panel for each space. Horizontal position represents session order, and vertical position represents the number of people observed.
+
+The shared vertical scale supports comparisons between spaces. It also makes unusual observations visible, including the Gym's count of 10 people in Session 3 and the Common Area's count of 14 in Session 5.
+
+However, the sessions were collected at irregular intervals. Connecting the points may suggest continuous occupancy changes even though the dataset contains separate observations. The design also does not explain the activities or circumstances behind the counts.
+
+I would retain the session comparison as a possible complementary overview, while reconsidering the connecting lines.
+
+### Direction C: Interactive Observation Explorer
+
+The third approach is an interactive Vega-Lite scatterplot that explores the relationship between occupancy, activity, and noise level.
+
+[Open the interactive observation explorer](visualization/alternative_c.html)
+
+Horizontal position represents people count, vertical position represents the recorded main activity, and color represents noise level. A dropdown filters the observations by space, while hovering over a point reveals its date, time, activity, noise level, and context notes.
+
+This approach supports more detailed investigation than the first two designs. For example, selecting the Gym and hovering over the observation with 10 people reveals that it occurred on September 29 at 6 AM, with loud noise and exercise-related activity recorded.
+
+The main limitation is overlapping marks. Some observations have the same people count and activity, causing multiple records to occupy the same position. As a result, not every observation can be inspected individually in the current implementation.
+
+I would develop this direction further because its filtering and details-on-demand support the goal of investigating individual observations and understanding unusual counts in context.
+
+### Comparison and Design Decision
+
+The three approaches offer different strengths. Direction A is effective for summarizing distributions, Direction B supports comparisons across observation sessions, and Direction C allows users to explore individual observations and retrieve contextual information.
+
+I selected Direction C as the starting point for further development because it addresses more of the original research questions through filtering and observation-level details. In the next iterations, I plan to address overlapping marks and investigate whether a complementary overview could improve comparisons across spaces and sessions.
+
+These visualizations describe the 28 observations collected rather than establishing typical usage patterns for all days or times.
