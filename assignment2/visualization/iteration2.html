@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iteration 2 - Coordinated Shared-Space Views</title>
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    color: #222;
+}
+
+h1 {
+    margin-bottom: 12px;
+}
+
+.description {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+#details {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    max-width: 650px;
+    background: #fafafa;
+}
+
+#details p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+#details strong {
+    display: inline-block;
+    min-width: 145px;
+}
+
+#vis {
+    margin-bottom: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Shared Spaces: Coordinated Observation Explorer</h1>
+
+<p class="description">
+Click a heatmap cell to inspect an observation.
+Double-click a cell to clear the selection.
+Sessions are ordered observations, not equally spaced time intervals.
+</p>
+
+<div id="vis"></div>
+
+<h2>Selected Observation Details</h2>
+
+<div id="details">
+Click a heatmap cell to inspect an observation.
+</div>
+
+<script>
+const spec = {"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "title": "Overview: Occupancy by Session and Space", "width": 680, "height": 230, "data": {"values": [{"observation_id": 1, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 2, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 3, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 4, "noise_level": "Moderate", "main_activity": "Exercising", "context_notes": "Weekend", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 4, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 5, "noise_level": "Moderate", "main_activity": "Recreation", "context_notes": "People playing table tennis", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 5, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 6, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 7, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 3, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Treadmill and strength training", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 8, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 8, "noise_level": "Loud", "main_activity": "Recreation", "context_notes": "People playing table tennis and pool", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 9, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 10, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Study Lounge 2", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 11, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Gym", "space_type": "Fitness", "people_count": 10, "noise_level": "Loud", "main_activity": "Exercising", "context_notes": "Treadmill StairMaster and strength training", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 12, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Common Area", "space_type": "Social/Common", "people_count": 5, "noise_level": "Moderate", "main_activity": "Mixed", "context_notes": "Reading books or newspapers and having coffee", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 13, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Study Lounge 1", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 14, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Study Lounge 2", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 15, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Gym", "space_type": "Fitness", "people_count": 2, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Treadmill walking", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 16, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Common Area", "space_type": "Social/Common", "people_count": 4, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "People using laptops or phones", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 17, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Heavy rain outside", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 18, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Heavy rain outside", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 19, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Heavy rain outside; space empty", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 20, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 1, "noise_level": "Quiet", "main_activity": "Reading", "context_notes": "Heavy rain outside; one person reading a book", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 21, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Event occurring in connected main lobby", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 22, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Event occurring in connected main lobby", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 23, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 5, "noise_level": "Moderate", "main_activity": "Exercising", "context_notes": "", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 24, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 14, "noise_level": "Loud", "main_activity": "Event/Social", "context_notes": "14 people present at observation time; people were coming and going during the event", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 25, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 2, "noise_level": "Moderate", "main_activity": "Exercising", "context_notes": "Background gym music; weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}, {"observation_id": 26, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty; weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}, {"observation_id": 27, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}, {"observation_id": 28, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 2, "noise_level": "Quiet", "main_activity": "Mixed", "context_notes": "One person working and one waiting for coffee; weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}]}, "layer": [{"params": [{"name": "selectedObservation", "select": {"type": "point", "fields": ["observation_id"], "on": "click", "clear": "dblclick"}}], "mark": {"type": "rect", "stroke": "white", "strokeWidth": 1}, "encoding": {"x": {"field": "session_id", "type": "ordinal", "title": "Observation Session (ordered)", "sort": "ascending"}, "y": {"field": "space", "type": "nominal", "title": "Space", "sort": ["Study Lounge 1", "Study Lounge 2", "Gym", "Common Area"]}, "color": {"field": "people_count", "type": "quantitative", "title": "People Observed", "scale": {"scheme": "blues"}}, "opacity": {"condition": {"param": "selectedObservation", "value": 1}, "value": 0.55}, "tooltip": [{"field": "observation_id", "title": "Observation"}, {"field": "space", "title": "Space"}, {"field": "session_id", "title": "Session"}, {"field": "people_count", "title": "People"}]}}, {"mark": {"type": "text", "fontSize": 14}, "encoding": {"x": {"field": "session_id", "type": "ordinal", "sort": "ascending"}, "y": {"field": "space", "type": "nominal", "sort": ["Study Lounge 1", "Study Lounge 2", "Gym", "Common Area"]}, "text": {"field": "people_count", "type": "quantitative", "format": "d"}, "color": {"condition": {"test": "datum.people_count >= 8", "value": "white"}, "value": "black"}}}]};
+const observations = [{"observation_id": 1, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 2, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 3, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 4, "noise_level": "Moderate", "main_activity": "Exercising", "context_notes": "Weekend", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 4, "date": "2026-09-27", "day_of_week": "Sunday", "time": "6-9 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 5, "noise_level": "Moderate", "main_activity": "Recreation", "context_notes": "People playing table tennis", "session_id": 1, "session_label": "S1: 2026-09-27 6-9 PM"}, {"observation_id": 5, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 6, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 7, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 3, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Treadmill and strength training", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 8, "date": "2026-09-28", "day_of_week": "Monday", "time": "5 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 8, "noise_level": "Loud", "main_activity": "Recreation", "context_notes": "People playing table tennis and pool", "session_id": 2, "session_label": "S2: 2026-09-28 5 PM"}, {"observation_id": 9, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 10, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Study Lounge 2", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 11, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Gym", "space_type": "Fitness", "people_count": 10, "noise_level": "Loud", "main_activity": "Exercising", "context_notes": "Treadmill StairMaster and strength training", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 12, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "6 AM", "time_period": "Morning", "space": "Common Area", "space_type": "Social/Common", "people_count": 5, "noise_level": "Moderate", "main_activity": "Mixed", "context_notes": "Reading books or newspapers and having coffee", "session_id": 3, "session_label": "S3: 2026-09-29 6 AM"}, {"observation_id": 13, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Study Lounge 1", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 14, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Study Lounge 2", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 15, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Gym", "space_type": "Fitness", "people_count": 2, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Treadmill walking", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 16, "date": "2026-09-29", "day_of_week": "Tuesday", "time": "3 PM", "time_period": "Afternoon", "space": "Common Area", "space_type": "Social/Common", "people_count": 4, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "People using laptops or phones", "session_id": 4, "session_label": "S4: 2026-09-29 3 PM"}, {"observation_id": 17, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Heavy rain outside", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 18, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Heavy rain outside", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 19, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Heavy rain outside; space empty", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 20, "date": "2026-10-01", "day_of_week": "Thursday", "time": "9 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 1, "noise_level": "Quiet", "main_activity": "Reading", "context_notes": "Heavy rain outside; one person reading a book", "session_id": 6, "session_label": "S6: 2026-10-01 9 PM"}, {"observation_id": 21, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Event occurring in connected main lobby", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 22, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Event occurring in connected main lobby", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 23, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 5, "noise_level": "Moderate", "main_activity": "Exercising", "context_notes": "", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 24, "date": "2026-10-01", "day_of_week": "Thursday", "time": "6 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 14, "noise_level": "Loud", "main_activity": "Event/Social", "context_notes": "14 people present at observation time; people were coming and going during the event", "session_id": 5, "session_label": "S5: 2026-10-01 6 PM"}, {"observation_id": 25, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 2, "noise_level": "Moderate", "main_activity": "Exercising", "context_notes": "Background gym music; weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}, {"observation_id": 26, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Space empty; weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}, {"observation_id": 27, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}, {"observation_id": 28, "date": "2026-10-03", "day_of_week": "Saturday", "time": "5:50 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 2, "noise_level": "Quiet", "main_activity": "Mixed", "context_notes": "One person working and one waiting for coffee; weekend", "session_id": 7, "session_label": "S7: 2026-10-03 5:50 PM"}];
+
+const details = document.getElementById("details");
+
+function showDetails(row) {
+    details.replaceChildren();
+
+    if (!row) {
+        details.textContent =
+            "Click a heatmap cell to inspect an observation.";
+        return;
+    }
+
+    const fields = [
+        ["Observation", row.observation_id],
+        ["Space", row.space],
+        ["Session", row.session_id],
+        ["Date", row.date],
+        ["Time", row.time],
+        ["People Observed", row.people_count],
+        ["Activity", row.main_activity],
+        ["Noise Level", row.noise_level],
+        ["Context", row.context_notes]
+    ];
+
+    for (const [label, value] of fields) {
+        const paragraph = document.createElement("p");
+        const strong = document.createElement("strong");
+
+        strong.textContent = label + ": ";
+
+        paragraph.appendChild(strong);
+        paragraph.appendChild(
+            document.createTextNode(String(value ?? ""))
+        );
+
+        details.appendChild(paragraph);
+    }
+}
+
+vegaEmbed("#vis", spec, {actions: false})
+    .then(result => {
+        const view = result.view;
+
+        view.addSignalListener(
+            "selectedObservation_tuple",
+            (name, value) => {
+                if (
+                    !value ||
+                    !Array.isArray(value.fields) ||
+                    !Array.isArray(value.values)
+                ) {
+                    showDetails(null);
+                    return;
+                }
+
+                const index = value.fields.findIndex(
+                    field => field.field === "observation_id"
+                );
+
+                if (index === -1) {
+                    showDetails(null);
+                    return;
+                }
+
+                const id = Number(value.values[index]);
+
+                const row = observations.find(
+                    observation => observation.observation_id === id
+                );
+
+                showDetails(row || null);
+            }
+        );
+    })
+    .catch(error => {
+        console.error(error);
+        details.textContent =
+            "The visualization could not be loaded. Check the browser console.";
+    });
+</script>
+
+</body>
+</html>
