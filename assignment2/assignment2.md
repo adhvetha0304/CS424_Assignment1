@@ -100,3 +100,20 @@ The three approaches offer different strengths. Direction A is effective for sum
 I selected Direction C as the starting point for further development because it addresses more of the original research questions through filtering and observation-level details. In the next iterations, I plan to address overlapping marks and investigate whether a complementary overview could improve comparisons across spaces and sessions.
 
 These visualizations describe the 28 observations collected rather than establishing typical usage patterns for all days or times.
+
+## Task 6: Iterating on the Selected Design
+
+I selected the interactive observation explorer for further development because it allows users to examine individual observations and their recorded context. I focused on addressing problems identified while testing the initial design.
+
+### Iteration 1: Making Individual Observations Accessible
+
+**Problem:** In the original interactive scatterplot, people count was mapped to horizontal position and main activity to vertical position. Several observations had identical values for these attributes, causing their marks to overlap. This made some observations difficult or impossible to inspect individually.
+
+**Change:** I changed the vertical encoding from main activity to observation ID. Each observation now occupies a separate row, while horizontal position continues to represent people count and color represents noise level. I preserved the space filter and hover tooltips.
+
+[Open Iteration 1](visualization/iteration1.html)
+
+**Result:** The revised design displays all 28 observations in separate rows. Testing confirmed that the space filters work and individual observations can be examined without marks completely covering one another. The original people counts remain unchanged.
+
+**Trade-off:** Although this improves access to individual records, it makes activity patterns less immediately visible because activity is no longer represented directly on an axis. This suggests a need for a complementary overview that supports broader comparisons while retaining observation-level details.
+
