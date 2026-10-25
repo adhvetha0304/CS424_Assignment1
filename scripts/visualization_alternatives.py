@@ -108,3 +108,50 @@ plt.savefig(
 plt.close()
 
 print("Saved alternative_a_distribution.png")
+
+
+
+# Comparing occupancy across observation sessions
+session_counts = df.pivot(
+    index="session_id",
+    columns="space",
+    values="people_count"
+).sort_index()
+
+fig, axes = plt.subplots(
+    2, 2,
+    figsize=(12, 8),
+    sharex=True,
+    sharey=True
+)
+
+for ax, space in zip(axes.flat, spaces):
+    counts = session_counts[space]
+
+    ax.plot(
+        counts.index,
+        counts.values,
+        marker="o",
+        linewidth=1.5,
+        color="steelblue"
+    )
+
+    ax.set_title(space)
+    ax.set_xticks(range(1, 8))
+    ax.set_ylim(-0.5, 15)
+    ax.grid(alpha=0.25)
+
+fig.suptitle("Observed Occupancy Across Seven Sessions")
+fig.supxlabel("Observation Session (ordered, not equally spaced in time)")
+fig.supylabel("People Observed")
+
+plt.tight_layout()
+
+plt.savefig(
+    OUTPUT_DIR / "alternative_b_sessions.png",
+    dpi=200
+)
+
+plt.close()
+
+print("Saved alternative_b_sessions.png")
