@@ -70,7 +70,6 @@ The current visualization is then available at:
 
 `http://localhost:8000/assignment2/visualization/iteration2.html`
 
-The interactive visualizations load Vega-Lite and related JavaScript libraries from a CDN, so an internet connection is required.
 
 ## Limitations
 
