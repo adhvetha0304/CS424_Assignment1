@@ -25,6 +25,15 @@ spaces = [
     "Common Area"
 ]
 
+session_labels = [
+    next(
+        row["session_label"]
+        for row in rows
+        if row["session_id"] == i
+    )
+    for i in range(1, 8)
+]
+
 selection = {
     "name": "selectedObservation",
     "select": {
@@ -51,10 +60,14 @@ spec = {
             },
             "encoding": {
                 "x": {
-                    "field": "session_id",
+                    "field": "session_label",
                     "type": "ordinal",
-                    "title": "Observation Session (ordered)",
-                    "sort": "ascending"
+                    "title": "Observation Session",
+                    "sort": session_labels,
+                    "axis": {
+                        "labelAngle": -35,
+                        "labelLimit": 160
+                    }
                 },
                 "y": {
                     "field": "space",
@@ -76,23 +89,36 @@ spec = {
                     "value": 0.55
                 },
                 "tooltip": [
-                    {"field": "observation_id", "title": "Observation"},
-                    {"field": "space", "title": "Space"},
-                    {"field": "session_id", "title": "Session"},
-                    {"field": "people_count", "title": "People"}
+                    {
+                        "field": "observation_id",
+                        "title": "Observation"
+                    },
+                    {
+                        "field": "space",
+                        "title": "Space"
+                    },
+                    {
+                        "field": "session_label",
+                        "title": "Session"
+                    },
+                    {
+                        "field": "people_count",
+                        "title": "People"
+                    }
                 ]
             }
         },
         {
             "mark": {
                 "type": "text",
-                "fontSize": 14
+                "fontSize": 14,
+                "interactive": False
             },
             "encoding": {
                 "x": {
-                    "field": "session_id",
+                    "field": "session_label",
                     "type": "ordinal",
-                    "sort": "ascending"
+                    "sort": session_labels
                 },
                 "y": {
                     "field": "space",
@@ -106,7 +132,7 @@ spec = {
                 },
                 "color": {
                     "condition": {
-                        "test": "datum.people_count >= 8",
+                        "test": "datum.people_count >= 12",
                         "value": "white"
                     },
                     "value": "black"
