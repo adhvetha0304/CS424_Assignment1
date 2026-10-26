@@ -1,213 +1,143 @@
+
 # CS 424 Assignment 2
 
 ## Exploring and Building Visualizations
 
 ## Task 1: Revisit Data and Questions
 
-For this assignment, I continued working with the dataset I collected for Assignment 1. It contains 28 observations of four shared spaces, collected across seven observation sessions. Before creating the visualizations, I reviewed the data again to check for duplicate observations, missing values, and anything else that might affect the analysis.
+For Assignment 2, I continued with the data I collected for Assignment 1: 28 observations of four shared spaces across seven sessions. I reviewed the CSV for missing or inconsistent values and checked how the observations were recorded before starting the visualizations.
 
-The original dataset already used `None` for `main_activity` when a space was empty, so I kept those values. I also checked the dates and kept them in a consistent `YYYY-MM-DD` format. Since each session included observations from all four spaces, I added `session_id` and `session_label` to make it easier to compare the spaces within the same session. For September 27, I kept the recorded time as `6-9 PM` rather than assigning an exact time that was not recorded.
+The original data uses `None` as the activity when a space is empty, so I kept that value rather than treating it as missing. I also kept the September 27 time as `6-9 PM` because I had not recorded an exact time. To compare observations made during the same visit, I added session IDs and readable session labels.
 
-The questions I wanted to explore were:
+The questions I focused on were:
 
-1. How does occupancy differ across the four shared spaces?
-2. Which spaces show the most variation across observation sessions?
-3. How are activity type and noise level related to the number of people observed?
-4. Which observations are unusual compared with the other observations of the same space, and what was happening at those times?
+1. How does occupancy differ across the four spaces?
+2. Which spaces have the most variation between sessions?
+3. How do the recorded activities and noise levels relate to occupancy?
+4. Which observations stand out, and what was happening during those observations?
 
-I decided not to focus mainly on time of day because most of my observations were collected in the evening. The dataset is also fairly small, so the results can describe what I observed, but they cannot establish how these spaces are generally used at all times.
-
-I kept the same dataset for this assignment because it was sufficient to explore the initial visualization designs, while keeping these limitations in mind.
+Most of my observations were in the evening, so I decided not to make time of day a main question. I used the existing data to explore these questions, without treating the results as typical occupancy patterns for every day or time.
 
 ## Task 2: Data Transformation
 
-I wrote a Python script, `scripts/prepare_data.py`, to prepare the dataset for visualization. It reads the original file from `data/shared_spaces.csv` and saves the processed version as `data/processed/shared_spaces_processed.csv`.
+I used `scripts/prepare_data.py` to prepare the data. It reads `data/shared_spaces.csv` and saves a separate processed file at `data/processed/shared_spaces_processed.csv`.
 
-The script checks that observation IDs are unique, people counts are nonnegative, dates are valid, and each session contains one observation for each of the four spaces. It also converts numeric fields to the correct types and removes extra whitespace from categorical values.
+The script checks observation IDs, dates, people counts, and whether each session includes all four spaces. It also removes extra spaces from category values and preserves `None` in `main_activity`. I added `session_id` (1 through 7) and `session_label` (the session number, date, and recorded time) so that I could organize the observations consistently.
 
-One thing I had to be careful about was the `None` activity value. This was already present in the original data for empty spaces, so I made sure Python preserved it rather than treating it as a missing value.
-
-I added two columns:
-
-- `session_id`, which numbers the seven observation sessions from 1 to 7.
-- `session_label`, which provides a readable label with the session number, date, and recorded time.
-
-I did not modify the original CSV. Keeping the raw and processed files separate makes it easier to check the transformations and reproduce the visualizations.
+I kept the original CSV unchanged. This way, the processing can be rerun and the processed values can be checked against the data I collected.
 
 ## Task 3: Explore the Data
 
-I started with three exploratory plots to better understand the occupancy counts and see which types of visualizations might work for the final design.
+I made three exploratory plots before choosing a visualization design.
 
 ### Occupancy Across Shared Spaces
 
 ![Occupancy by space](figures/eda/occupancy_by_space.png)
 
-This plot shows the individual people counts for each shared space.
+This plot shows the individual counts for each space. Study Lounge 1 had 0–1 people, and Study Lounge 2 had 0–2. The Gym reached 10 people, while the Common Area reached 14. The Gym and Common Area had noticeably more variation than the lounges.
 
-Study Lounge 1 had between 0 and 1 people, and Study Lounge 2 had between 0 and 2. The Gym reached 10 people, while the Common Area reached 14. These two spaces also showed much more variation than the study lounges.
-
-I found it useful to see individual observations instead of just an average. However, because all four spaces shared the same scale, smaller differences in the study lounges were not very noticeable. This made me think more carefully about how to compare spaces with different occupancy ranges.
+Showing individual points was useful because I could see the range of observations rather than just an average. It was harder to notice small differences in the lounges when all four spaces used the same scale.
 
 ### Occupancy Across Observation Sessions
 
 ![Occupancy by session](figures/eda/occupancy_by_session.png)
 
-I then created a heatmap to compare occupancy across the seven observation sessions.
+The heatmap showed the counts for all four spaces in each session. Two observations stood out: 10 people in the Gym during the September 29 morning session, and 14 in the Common Area during the October 1 evening event. The Common Area had only 1 person at the later observation that day.
 
-The Gym had 10 people during the September 29 morning session, while the Common Area had 14 during the October 1 evening event. The Common Area had only 1 person during the later session that same day.
-
-This plot helped me see how much the counts could differ between observations. It also showed that using only average occupancy would hide some interesting differences. The session information was therefore important to keep in the later designs.
-
-One limitation is that the sessions are shown at equal distances even though the actual time intervals between them were different.
+I found this view helpful for comparing individual sessions. It made me want to keep session information in the final design instead of relying only on summary statistics.
 
 ### Activity and Noise Level
 
 ![Occupancy by activity and noise](figures/eda/occupancy_activity_noise.png)
 
-For the third plot, I looked at the recorded activity and noise level alongside occupancy.
+This plot compares occupancy with the recorded activities and noise levels. Both study lounges were recorded as Quiet, while the Gym and Common Area included Moderate and Loud observations. The highest counts in the Gym and Common Area were both Loud, but the data is too limited to say that more people always means more noise.
 
-All observations of the two study lounges were labeled Quiet, while the Gym and Common Area included Moderate and Loud observations. The highest counts in the Gym and Common Area were both labeled Loud, but there are too few observations to conclude that higher occupancy always leads to more noise.
+My first version had overlapping points and an incorrect vertical range, so I fixed the scale and added small offsets to separate repeated points. I also noticed that activities largely depended on the space itself, which made direct comparisons between activities less useful than I first expected.
 
-My first version had overlapping points, and the vertical scale did not show the full range of counts. I corrected the scale and added small offsets to make repeated observations easier to see.
+### What I Took From the Exploration
 
-I also noticed that activities were closely related to the spaces where they occurred. For example, exercise-related activity was mainly associated with the Gym. Because of this, comparing activities without considering the space could be misleading. Some activities were also recorded only once or twice.
-
-### What I Learned From the Exploration
-
-The exploratory plots showed me that the individual observations matter, especially when a count is unusually high or low. I also realized that there was a trade-off between comparing all four spaces on the same scale and making the smaller differences within each space visible.
-
-For the next task, I wanted to try designs that could compare occupancy across spaces while still making it possible to examine individual sessions and the context behind unusual observations.
+The main thing I learned was that I needed both an overview of the counts and a way to look at individual observations. The unusual counts were easier to understand when I could also check when they happened and what I had recorded in the notes.
 
 ## Task 4: Exploring Alternative Visualization Designs
 
-I created three different visualization designs. Rather than changing only the colors or appearance, I tried to make each one answer a different question.
+I tried three designs that focused on different tasks, rather than making small changes to the same chart.
 
 ### Direction A: Occupancy Distribution by Space
 
 ![Occupancy distribution](figures/alternatives/alternative_a_distribution.png)
 
-My first design focused on comparing the occupancy distributions of the four spaces.
+For the first design, I wanted to compare the occupancy ranges of the four spaces. I placed people count on the horizontal axis and space on the vertical axis. Circles show the individual observations, diamonds show medians, and gray lines show the observed ranges.
 
-I used horizontal position for the number of people and vertical position to separate the spaces. The circles represent individual observations, the orange diamonds show the medians, and the horizontal lines show the observed ranges.
-
-This design makes it fairly easy to compare the usual occupancy levels and see which spaces have larger ranges. For example, the Common Area has a much wider range than either study lounge.
-
-The main problem is that the shared scale makes differences between small counts harder to see. It also does not show which session an observation belongs to or what activity was happening.
-
-I would keep this design as a summary of occupancy distributions, but I would not use it by itself as the final visualization.
+This made it easy to see that the Common Area and Gym had larger ranges than the lounges. It worked well as a summary, but it did not tell me which sessions the counts came from. I kept it as a useful comparison, rather than choosing it as the main design.
 
 ### Direction B: Occupancy Across Observation Sessions
 
 ![Session comparison](figures/alternatives/alternative_b_sessions.png)
 
-For the second design, I used small-multiple line charts, with a separate chart for each space.
+My second design uses four small line charts, one for each space. The horizontal axis shows session order, and the vertical axis shows people count. I used the same vertical scale so the charts could be compared.
 
-The horizontal position represents the observation session, and the vertical position represents the number of people observed. I used the same vertical scale across all four charts so their counts could be compared.
-
-This version made it easier to follow the recorded counts for each space across the seven sessions. The Gym's count of 10 in Session 3 and the Common Area's count of 14 in Session 5 stood out clearly.
-
-However, I realized that the connecting lines could be misleading. Since I did not observe the spaces continuously, the lines might suggest that I measured occupancy changes between sessions. The actual observations were also collected at irregular time intervals.
-
-I liked the session-based comparison, but I would reconsider the connecting lines and use this mainly as an overview.
+I could follow the counts for each space and quickly spot the Gym's count of 10 and the Common Area's count of 14. I liked having a separate panel for each space. However, the lines connect observations collected at different times, which can make them look like continuous measurements. I wanted to keep the session comparison idea without relying on those connecting lines.
 
 ### Direction C: Interactive Observation Explorer
 
-[Open the interactive observation explorer](visualization/alternative_c.html)
+![Initial interactive design](figures/iterations/initial_interactive.png)
 
-My third design was an interactive Vega-Lite scatterplot. I wanted to see whether interaction would make it easier to explore the recorded activity, noise level, and context.
+[Open the initial interactive visualization](visualization/alternative_c.html)
 
-The horizontal position represents people count, the vertical position represents main activity, and color represents noise level. I also added a dropdown to filter by space and tooltips to show the details of individual observations.
+For the third design, I tried an interactive scatterplot using Vega-Lite. People count is on the horizontal axis, activity is on the vertical axis, and color shows noise level. I added a dropdown to filter by space and tooltips with the date, time, activity, and context notes.
 
-For example, when I filtered the chart to the Gym and hovered over the observation with 10 people, I could see its date, time, activity, noise level, and context notes.
+When I selected the Gym, for example, I could hover over the 10-person observation and see the recorded details. I liked being able to check the context without putting every field on the chart. While testing the All Spaces view, I noticed that some observations had exactly the same activity and people count, so their circles covered one another. That was the main issue I wanted to address in the next version.
 
-I liked that I could explore individual observations without putting all the information directly on the chart.
+### Choosing a Direction
 
-However, I noticed a problem when looking at all four spaces together. Several observations had the same activity and people count, so their circles appeared in exactly the same position. This meant I could not easily access every observation.
-
-I decided to continue with this design because the filtering and observation details were useful, but I needed to fix the overlapping points.
-
-### Comparing the Three Designs
-
-Each design worked better for a different task. Direction A was useful for comparing distributions, Direction B made session differences easier to follow, and Direction C was better for examining individual observations and their context.
-
-I chose Direction C for further development because I wanted the final visualization to support both comparisons and a closer look at unusual observations.
-
-My plan was to first fix the overlapping points and then find a better way to combine occupancy comparisons with individual observation details.
-
-All three designs use the 28 observations I collected, so the patterns should be interpreted as results from this dataset rather than general conclusions about how the spaces are always used.
+Direction A worked best for comparing ranges, and Direction B was useful for following the sessions. I decided to continue with Direction C because I found the observation details useful, especially for the unusually high counts. My goal was to keep that ability while making it easier to compare all four spaces.
 
 ## Task 5: Interaction and Multiple Views
 
-I explored interaction because I wanted users to do more than just look at a static chart. In particular, I wanted them to compare occupancy across spaces and sessions, then examine the context behind an individual observation.
+I used interaction where it helped answer a question. The initial dropdown let me focus on one space, and the tooltips showed details without crowding the plot.
 
-In Direction C, I first added a dropdown to filter observations by space and tooltips to show more information when hovering over a point. The filter reduced the number of observations shown, while the tooltips provided details without making the chart too crowded.
+In the final version, I used a heatmap linked to a details panel. I can compare the 28 people counts first, then click a cell when I want to check its activity, noise level, time, or notes. I tested this with the Common Area observation of 14 people and the Gym observation of 10 people; the panel updated to the correct record in both cases. I also tested clearing the selection by double-clicking.
 
-After testing this version, I found that overlapping points made some observations difficult to inspect. I addressed this in the first iteration by giving every observation its own row.
-
-In the second iteration, I introduced a session-by-space heatmap together with a separate details panel. The heatmap provides an overview of all 28 occupancy counts, and clicking a cell displays the selected observation's information below it.
-
-I tested the selection using the Common Area observation with 14 people and the Gym observation with 10 people. In both cases, the details panel updated to show the corresponding record.
-
-I found this interaction more useful than displaying every attribute at once. It allows the overview to remain relatively simple while still providing the activity, noise level, date, time, and context when needed.
-
-The main limitation is that activity and noise patterns are not immediately visible in the overview, since those attributes are shown only after selecting an observation.
+I preferred this to showing all the information at once because the main view stayed easy to read, while the extra information was still available when I needed it.
 
 ## Task 6: Iterating on the Selected Design
 
-I continued developing Direction C because it was the most useful starting point for examining individual observations. I made two main changes based on the problems I noticed while testing the visualizations.
+I made two larger changes to Direction C based on what I found while testing it.
 
-### Iteration 1: Making Individual Observations Accessible
+### Iteration 1: Separating Overlapping Observations
 
-**Problem:** In the original interactive scatterplot, multiple observations had the same people count and main activity. Their circles overlapped, so some records were difficult to inspect separately.
-
-**Change:** I replaced main activity on the vertical axis with observation ID. Every observation now has its own row, while horizontal position still represents people count and color represents noise level. I kept the space filter and hover tooltips.
+![Iteration 1](figures/iterations/iteration1.png)
 
 [Open Iteration 1](visualization/iteration1.html)
 
-**Result:** This version shows all 28 observations separately. I tested the filters for all four spaces and checked that individual observations could still be inspected. The actual people counts were not changed.
+**Problem:** In the first interactive plot, several circles overlapped because those observations had the same activity and people count.
 
-**What did not work as well:** Although the overlapping-point problem was fixed, the observation IDs were not very useful for seeing patterns across activities or sessions. I could examine individual records, but it was harder to compare the spaces at a glance.
+**Change:** I changed the vertical axis from activity to observation ID, giving each observation a separate row. People count stayed on the horizontal axis, and I kept the noise colors, space filter, and tooltips.
 
-This led me to reconsider how the information should be organized.
+**Result:** All 28 observations became individually visible and accessible. I tested the space filters and could inspect the records separately. The downside was that a list of observation IDs was not very helpful for comparing spaces or sessions. This led to the next change.
 
-### Iteration 2: Adding an Overview and Details Panel
+### Iteration 2: Combining an Overview With Observation Details
 
-**Problem:** Iteration 1 made every record accessible, but arranging the observations by ID did not make comparisons between spaces and sessions very easy.
-
-**Change:** I created a heatmap showing the four spaces across seven observation sessions. Each cell represents one observation, with color intensity and a number showing its people count.
-
-I also added a details panel below the heatmap. Clicking a cell displays the selected observation's date, time, people count, activity, noise level, and context notes.
+![Iteration 2](figures/iterations/iteration2.png)
 
 [Open Iteration 2](visualization/iteration2.html)
 
-**Result:** This version makes it easier to compare all 28 counts while still looking at individual observations.
+**Problem:** Iteration 1 fixed the overlap, but I still had to look through individual rows to compare the observations.
 
-For example, clicking the Common Area cell in Session 5 shows 14 people during an event on October 1 at 6 PM. Clicking the Gym cell in Session 3 shows 10 people during an exercise-related observation on September 29 at 6 AM.
+**Change:** I switched to a session-by-space heatmap. Each cell shows one observation using both its people count and color intensity. I linked it to an HTML details panel that updates when a cell is clicked.
 
-I tested both selections and confirmed that the details panel displayed the corresponding information.
+**Result:** I could see all 28 counts together and inspect a specific observation without searching through overlapping points. Clicking Common Area in Session 5 showed the 14-person event on October 1 at 6 PM. Clicking Gym in Session 3 showed 10 people exercising on September 29 at 6 AM. I tested both selections and confirmed that the details changed correctly.
 
-**What could still be improved:** Although the heatmap works well for comparing people counts, it does not directly show activity or noise level. Users need to click individual cells to see those details.
-
-Also, the sessions are equally spaced on the horizontal axis even though the observations were collected at irregular intervals. The axis represents the order of the sessions, not continuous time.
-
-Overall, I preferred this version because it made comparing occupancy and examining individual observations part of the same process.
+I preferred this version because the overview and individual details now worked together. Activity and noise are available in the details panel rather than directly on the heatmap, which is a choice I would like to evaluate with users later.
 
 ## Task 7: Current Working Design and Next Steps
 
-My current working design is the coordinated heatmap and details panel from Iteration 2.
+My current design is Iteration 2: the occupancy heatmap with a linked details panel.
 
 [Open the current working visualization](visualization/iteration2.html)
 
-The design has two main parts. The heatmap shows occupancy across the four spaces and seven sessions, while the details panel displays information about whichever observation is selected.
+Compared with my first sketches and earlier plots, this version is less focused on showing every attribute at the same time. The heatmap is for comparing counts across the four spaces and seven sessions. When a count stands out, I can click it to check the activity, noise level, date, time, and notes.
 
-This version is different from my earlier designs because I no longer try to show all the attributes using one set of marks. Instead, I use the heatmap for comparing occupancy and the details panel for examining the activity, noise level, and context.
+I think this works well with my dataset, especially for observations such as the 14-person Common Area event and the 10-person Gym session. It also avoids the overlapping marks from the original interactive plot.
 
-I think this works better for my dataset because users can quickly notice observations such as the Common Area count of 14 or the Gym count of 10 and then check what was recorded during those observations.
-
-The main interactions are also straightforward: clicking a cell selects an observation and updates the details panel. This avoids the overlapping-point problem I had in the earlier scatterplot.
-
-There are still limitations I would like to address in Assignment 3. The dataset contains only seven observation sessions, with uneven coverage across dates and times, so I cannot make broader claims about typical occupancy. The heatmap also does not show how much actual time passed between observations.
-
-For the next assignment, I would like to evaluate whether users can identify unusual observations, compare spaces, and retrieve the relevant context without confusion. I would also look at whether adding a simple way to compare activity or noise patterns would help, or whether that would make the interface too complicated.
-
-For now, I think the coordinated view is the strongest of the designs I tested because it provides both a useful overview and a way to examine individual records in more detail.
+For Assignment 3, I would like to see whether someone else can compare the spaces, find an unusual observation, and get its details without much explanation. I would also check whether the session labels are clear enough, since the sessions are ordered rather than spaced according to elapsed time. With only seven sessions, I would keep any conclusions limited to the observations I collected.
