@@ -53,7 +53,7 @@ The interactive versions are:
 - [Initial interactive design](https://adhvetha0304.github.io/CS424_Assignment1/assignment2/visualization/alternative_c.html)
 - [Iteration 1 — Individual observations](https://adhvetha0304.github.io/CS424_Assignment1/assignment2/visualization/iteration1.html)
 - [Iteration 2 — Coordinated overview and details](https://adhvetha0304.github.io/CS424_Assignment1/assignment2/visualization/iteration2.html)
-- 
+  
 **Current working design:** Iteration 2
 
 The final design includes a heatmap of occupancy across the four spaces and seven observation sessions. Selecting a cell displays the corresponding observation's date, time, occupancy, activity, noise level, and context notes.
