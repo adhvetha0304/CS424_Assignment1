@@ -82,7 +82,7 @@ I could follow the counts for each space and quickly spot the Gym's count of 10 
 
 ![Initial interactive design](figures/iterations/initial_interactive.png)
 
-[Open the initial interactive visualization](visualization/alternative_c.html)
+[Open the initial interactive visualization](https://adhvetha0304.github.io/CS424_Assignment1/assignment2/visualization/alternative_c.html)
 
 For the third design, I tried an interactive scatterplot using Vega-Lite. People count is on the horizontal axis, activity is on the vertical axis, and color shows noise level. I added a dropdown to filter by space and tooltips with the date, time, activity, and context notes.
 
@@ -108,7 +108,7 @@ I made two larger changes to Direction C based on what I found while testing it.
 
 ![Iteration 1](figures/iterations/iteration1.png)
 
-[Open Iteration 1](visualization/iteration1.html)
+[Open Iteration 1](https://adhvetha0304.github.io/CS424_Assignment1/assignment2/visualization/iteration1.html)
 
 **Problem:** In the first interactive plot, several circles overlapped because those observations had the same activity and people count.
 
@@ -120,7 +120,7 @@ I made two larger changes to Direction C based on what I found while testing it.
 
 ![Iteration 2](figures/iterations/iteration2.png)
 
-[Open Iteration 2](visualization/iteration2.html)
+[Open Iteration 2](https://adhvetha0304.github.io/CS424_Assignment1/assignment2/visualization/iteration2.html)
 
 **Problem:** Iteration 1 fixed the overlap, but I still had to look through individual rows to compare the observations.
 
@@ -134,7 +134,7 @@ I preferred this version because the overview and individual details now worked 
 
 My current design is Iteration 2: the occupancy heatmap with a linked details panel.
 
-[Open the current working visualization](visualization/iteration2.html)
+[Open the current working visualization](https://adhvetha0304.github.io/CS424_Assignment1/assignment2/visualization/iteration2.html)
 
 Compared with my first sketches and earlier plots, this version is less focused on showing every attribute at the same time. The heatmap is for comparing counts across the four spaces and seven sessions. When a count stands out, I can click it to check the activity, noise level, date, time, and notes.
 
