@@ -96,7 +96,7 @@ The two views belong together because the heatmap is for comparing counts and th
 
 **Change:** I returned to the session-by-space heatmap from my EDA and Assignment 1 sketch, with the count shown as both a number and color intensity. I linked it to a details panel, labeled sessions with their dates and times, and adjusted text colors for readability.
 
-**Result:** I can compare all 28 counts in one view and still inspect individual records. Clicking the Common Area cell in Session 5 shows Observation 24, with 14 people and the October 1 event notes. The Gym cell in Session 3 brings up the 10-person observation from September 29.
+**Result:** I can compare all 28 counts in one view and still inspect individual records without losing the context behind each observation.
 
 ## Task 7: Current Design
 
