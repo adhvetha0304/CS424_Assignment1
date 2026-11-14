@@ -62,6 +62,12 @@ for condition in ("static", "interactive"):
     assert count == 1, f"Could not find HTML body in {output}"
 
     page = page.replace("28 observations", "12 practice observations")
+    page = page.replace(
+        'matchingSessions.map(id => "S" + id)',
+        'matchingSessions.map(id => "P" + id)'
+    )
+    page = page.replace("across seven observation sessions", "across three practice sessions")
+    page = page.replace("across seven observation sessions", "across three practice sessions")
     output.write_text(page, encoding="utf-8")
     print(f"Created {output.relative_to(ROOT)}")
 

@@ -210,7 +210,7 @@ vegaEmbed("#vis", spec, {actions: false, tooltip: false})
             } else {
                 highlightStatus.textContent =
                     "Matching sessions: " +
-                    matchingSessions.map(id => "S" + id).join(", ") +
+                    matchingSessions.map(id => "P" + id).join(", ") +
                     " (" + chosenSpace + " / " + chosenNoise + ").";
             }
         }
