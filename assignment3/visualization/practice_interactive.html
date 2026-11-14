@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Shared Spaces - Interactive Condition</title>
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    color: #222;
+}
+
+h1 {
+    margin-bottom: 12px;
+}
+
+.description {
+    margin-bottom: 25px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.noise-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.noise-controls select,
+.noise-controls button {
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.noise-controls button {
+    cursor: pointer;
+}
+
+#highlight-status {
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 14px;
+}
+
+#vis {
+    margin-bottom: 25px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+#details {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    max-width: 650px;
+    background: #fafafa;
+}
+
+#details p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+#details strong {
+    display: inline-block;
+    min-width: 145px;
+}
+</style>
+</head>
+
+<body>
+<div style="background:#fff3cd;color:#553c00;border:1px solid #e0bd63;padding:12px 16px;margin:15px;font-family:Arial,sans-serif;"><strong>PRACTICE ONLY — SYNTHETIC DATA.</strong> These 12 fictional observations are not part of the main study.</div>
+
+<h1>Shared Spaces: Coordinated Observation Explorer</h1>
+
+<p class="description">
+Choose a space and noise level to highlight matching observation
+sessions across all four spaces. Click a heatmap cell to inspect
+its details, or double-click to clear the cell selection.
+Sessions are ordered observations, not equally spaced time intervals.
+</p>
+
+<div class="noise-controls">
+    <label for="noise-space">Reference space:</label>
+
+    <select id="noise-space">
+        <option value="">Choose a space</option>
+        <option value="Study Lounge 1">Study Lounge 1</option>
+        <option value="Study Lounge 2">Study Lounge 2</option>
+        <option value="Gym">Gym</option>
+        <option value="Common Area">Common Area</option>
+    </select>
+
+    <label for="noise-level">Noise level:</label>
+
+    <select id="noise-level">
+        <option value="">Choose a noise level</option>
+        <option value="Quiet">Quiet</option>
+        <option value="Moderate">Moderate</option>
+        <option value="Loud">Loud</option>
+    </select>
+
+    <button id="clear-highlight" type="button">
+        Clear Highlight
+    </button>
+</div>
+
+<p id="highlight-status" aria-live="polite">
+    No noise highlight applied.
+</p>
+
+<div id="vis"></div>
+
+<h2>Selected Observation Details</h2>
+
+<div id="details">
+    Click a heatmap cell to inspect an observation.
+</div>
+
+<script>
+const spec = {"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "title": "Overview: Occupancy by Session and Space", "width": 680, "height": 230, "data": {"values": [{"observation_id": 1, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Study Lounge 1", "space_type": "Study", "people_count": 3, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 2, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Study Lounge 2", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 3, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Gym", "space_type": "Fitness", "people_count": 2, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 4, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Common Area", "space_type": "Social/Common", "people_count": 6, "noise_level": "Moderate", "main_activity": "Recreation", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 5, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 6, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 7, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Gym", "space_type": "Fitness", "people_count": 7, "noise_level": "Loud", "main_activity": "Exercising", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 8, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Common Area", "space_type": "Social/Common", "people_count": 3, "noise_level": "Quiet", "main_activity": "Reading", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 9, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}, {"observation_id": 10, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 4, "noise_level": "Moderate", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}, {"observation_id": 11, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 1, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}, {"observation_id": 12, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 5, "noise_level": "Loud", "main_activity": "Recreation", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}]}, "params": [{"name": "highlightActive", "value": false}, {"name": "highlightedSessions", "value": []}], "layer": [{"params": [{"name": "selectedObservation", "select": {"type": "point", "fields": ["observation_id"], "on": "click", "clear": "dblclick"}}], "mark": {"type": "rect"}, "encoding": {"x": {"field": "session_label", "type": "ordinal", "title": "Observation Session", "sort": ["P1: 2026-08-01 10 AM", "P2: 2026-08-02 2 PM", "P3: 2026-08-03 7 PM"], "axis": {"labelAngle": -35, "labelLimit": 160}}, "y": {"field": "space", "type": "nominal", "title": "Space", "sort": ["Study Lounge 1", "Study Lounge 2", "Gym", "Common Area"]}, "color": {"field": "people_count", "type": "quantitative", "title": "People Observed", "scale": {"scheme": "blues"}}, "opacity": {"condition": {"test": "!highlightActive || indexof(highlightedSessions, datum.session_id) >= 0", "value": 1}, "value": 0.12}, "stroke": {"condition": {"param": "selectedObservation", "empty": false, "value": "#d97706"}, "value": "white"}, "strokeWidth": {"condition": {"param": "selectedObservation", "empty": false, "value": 3}, "value": 1}, "tooltip": [{"field": "observation_id", "title": "Observation"}, {"field": "space", "title": "Space"}, {"field": "session_label", "title": "Session"}, {"field": "people_count", "title": "People"}]}}, {"mark": {"type": "text", "fontSize": 14, "interactive": false}, "encoding": {"x": {"field": "session_label", "type": "ordinal", "sort": ["P1: 2026-08-01 10 AM", "P2: 2026-08-02 2 PM", "P3: 2026-08-03 7 PM"]}, "y": {"field": "space", "type": "nominal", "sort": ["Study Lounge 1", "Study Lounge 2", "Gym", "Common Area"]}, "text": {"field": "people_count", "type": "quantitative", "format": "d"}, "color": {"condition": {"test": "datum.people_count >= 12 && (!highlightActive || indexof(highlightedSessions, datum.session_id) >= 0)", "value": "white"}, "value": "black"}}}]};
+const observations = [{"observation_id": 1, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Study Lounge 1", "space_type": "Study", "people_count": 3, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 2, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Study Lounge 2", "space_type": "Study", "people_count": 1, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 3, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Gym", "space_type": "Fitness", "people_count": 2, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 4, "date": "2026-08-01", "day_of_week": "Saturday", "time": "10 AM", "time_period": "Morning", "space": "Common Area", "space_type": "Social/Common", "people_count": 6, "noise_level": "Moderate", "main_activity": "Recreation", "context_notes": "Practice data", "session_id": 1, "session_label": "P1: 2026-08-01 10 AM"}, {"observation_id": 5, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Study Lounge 1", "space_type": "Study", "people_count": 0, "noise_level": "Quiet", "main_activity": "None", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 6, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Study Lounge 2", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 7, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Gym", "space_type": "Fitness", "people_count": 7, "noise_level": "Loud", "main_activity": "Exercising", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 8, "date": "2026-08-02", "day_of_week": "Sunday", "time": "2 PM", "time_period": "Afternoon", "space": "Common Area", "space_type": "Social/Common", "people_count": 3, "noise_level": "Quiet", "main_activity": "Reading", "context_notes": "Practice data", "session_id": 2, "session_label": "P2: 2026-08-02 2 PM"}, {"observation_id": 9, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Study Lounge 1", "space_type": "Study", "people_count": 2, "noise_level": "Quiet", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}, {"observation_id": 10, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Study Lounge 2", "space_type": "Study", "people_count": 4, "noise_level": "Moderate", "main_activity": "Studying/Working", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}, {"observation_id": 11, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Gym", "space_type": "Fitness", "people_count": 1, "noise_level": "Quiet", "main_activity": "Exercising", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}, {"observation_id": 12, "date": "2026-08-03", "day_of_week": "Monday", "time": "7 PM", "time_period": "Evening", "space": "Common Area", "space_type": "Social/Common", "people_count": 5, "noise_level": "Loud", "main_activity": "Recreation", "context_notes": "Practice data", "session_id": 3, "session_label": "P3: 2026-08-03 7 PM"}];
+
+const details = document.getElementById("details");
+const spaceSelect = document.getElementById("noise-space");
+const noiseSelect = document.getElementById("noise-level");
+const clearButton = document.getElementById("clear-highlight");
+const highlightStatus = document.getElementById("highlight-status");
+
+function showDetails(row) {
+    details.replaceChildren();
+
+    if (!row) {
+        details.textContent =
+            "Click a heatmap cell to inspect an observation.";
+        return;
+    }
+
+    const fields = [
+        ["Observation", row.observation_id],
+        ["Space", row.space],
+        ["Session", row.session_id],
+        ["Date", row.date],
+        ["Time", row.time],
+        ["People Observed", row.people_count],
+        ["Activity", row.main_activity],
+        ["Noise Level", row.noise_level],
+        ["Context", row.context_notes]
+    ];
+
+    for (const [label, value] of fields) {
+        const paragraph = document.createElement("p");
+        const strong = document.createElement("strong");
+
+        strong.textContent = label + ": ";
+
+        paragraph.appendChild(strong);
+        paragraph.appendChild(
+            document.createTextNode(String(value ?? ""))
+        );
+
+        details.appendChild(paragraph);
+    }
+}
+
+vegaEmbed("#vis", spec, {actions: false, tooltip: false})
+    .then(result => {
+        const view = result.view;
+
+        async function updateHighlight() {
+            const chosenSpace = spaceSelect.value;
+            const chosenNoise = noiseSelect.value;
+
+            if (!chosenSpace || !chosenNoise) {
+                view.signal("highlightActive", false);
+                view.signal("highlightedSessions", []);
+                await view.runAsync();
+
+                highlightStatus.textContent =
+                    "No noise highlight applied.";
+                return;
+            }
+
+            const matchingSessions = observations
+                .filter(row =>
+                    row.space === chosenSpace &&
+                    row.noise_level === chosenNoise
+                )
+                .map(row => row.session_id)
+                .sort((a, b) => a - b);
+
+            view.signal("highlightedSessions", matchingSessions);
+            view.signal("highlightActive", true);
+            await view.runAsync();
+
+            if (matchingSessions.length === 0) {
+                highlightStatus.textContent =
+                    "No sessions match: " +
+                    chosenSpace + " / " + chosenNoise + ".";
+            } else {
+                highlightStatus.textContent =
+                    "Matching sessions: " +
+                    matchingSessions.map(id => "S" + id).join(", ") +
+                    " (" + chosenSpace + " / " + chosenNoise + ").";
+            }
+        }
+
+        spaceSelect.addEventListener("change", updateHighlight);
+        noiseSelect.addEventListener("change", updateHighlight);
+
+        clearButton.addEventListener("click", () => {
+            spaceSelect.value = "";
+            noiseSelect.value = "";
+            updateHighlight();
+        });
+
+        view.addSignalListener(
+            "selectedObservation_tuple",
+            (name, value) => {
+                if (
+                    !value ||
+                    !Array.isArray(value.fields) ||
+                    !Array.isArray(value.values)
+                ) {
+                    showDetails(null);
+                    return;
+                }
+
+                const index = value.fields.findIndex(
+                    field => field.field === "observation_id"
+                );
+
+                if (index === -1) {
+                    showDetails(null);
+                    return;
+                }
+
+                const id = Number(value.values[index]);
+
+                const row = observations.find(
+                    observation => observation.observation_id === id
+                );
+
+                showDetails(row || null);
+            }
+        );
+    })
+    .catch(error => {
+        console.error(error);
+
+        details.textContent =
+            "The visualization could not be loaded. " +
+            "Check the browser console.";
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+observation_id,date,day_of_week,time,time_period,space,space_type,people_count,noise_level,main_activity,context_notes,session_id,session_label
+1,2026-08-01,Saturday,10 AM,Morning,Study Lounge 1,Study,3,Quiet,Studying/Working,Practice data,1,P1: 2026-08-01 10 AM
+2,2026-08-01,Saturday,10 AM,Morning,Study Lounge 2,Study,1,Quiet,Studying/Working,Practice data,1,P1: 2026-08-01 10 AM
+3,2026-08-01,Saturday,10 AM,Morning,Gym,Fitness,2,Quiet,Exercising,Practice data,1,P1: 2026-08-01 10 AM
+4,2026-08-01,Saturday,10 AM,Morning,Common Area,Social/Common,6,Moderate,Recreation,Practice data,1,P1: 2026-08-01 10 AM
+5,2026-08-02,Sunday,2 PM,Afternoon,Study Lounge 1,Study,0,Quiet,None,Practice data,2,P2: 2026-08-02 2 PM
+6,2026-08-02,Sunday,2 PM,Afternoon,Study Lounge 2,Study,2,Quiet,Studying/Working,Practice data,2,P2: 2026-08-02 2 PM
+7,2026-08-02,Sunday,2 PM,Afternoon,Gym,Fitness,7,Loud,Exercising,Practice data,2,P2: 2026-08-02 2 PM
+8,2026-08-02,Sunday,2 PM,Afternoon,Common Area,Social/Common,3,Quiet,Reading,Practice data,2,P2: 2026-08-02 2 PM
+9,2026-08-03,Monday,7 PM,Evening,Study Lounge 1,Study,2,Quiet,Studying/Working,Practice data,3,P3: 2026-08-03 7 PM
+10,2026-08-03,Monday,7 PM,Evening,Study Lounge 2,Study,4,Moderate,Studying/Working,Practice data,3,P3: 2026-08-03 7 PM
+11,2026-08-03,Monday,7 PM,Evening,Gym,Fitness,1,Quiet,Exercising,Practice data,3,P3: 2026-08-03 7 PM
+12,2026-08-03,Monday,7 PM,Evening,Common Area,Social/Common,5,Loud,Recreation,Practice data,3,P3: 2026-08-03 7 PM
