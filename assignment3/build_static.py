@@ -162,10 +162,11 @@ tbody tr:nth-child(even) {
 <h1>Shared Spaces: Coordinated Observation Explorer</h1>
 
 <p class="description">
-This version shows the recorded occupancy across seven observation
-sessions. Use the reference table below to inspect the details
-of individual observations. Sessions are ordered observations,
-not equally spaced time intervals.
+This version shows occupancy across seven observation sessions.
+The heatmap shows the number of people in each space and session.
+Use the reference table below to check noise levels and other
+observation details. Sessions are ordered observations, not
+equally spaced time intervals.
 </p>
 
 <div id="vis"></div>
