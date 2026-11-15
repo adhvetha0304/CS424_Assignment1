@@ -179,7 +179,7 @@ Problems and changes go in `assignment3/study/pilot_notes.md`. The visualization
 
 ## Analysis Plan
 
-I'll use Python, Pandas, and Matplotlib to compare accuracy and completion time between Static and Interactive. The analysis will include:
+I'll use Python's built-in CSV and statistics modules, along with Matplotlib, to compare accuracy and completion time between Static and Interactive. The analysis will include:
 
 - Overall accuracy for each condition.
 - Mean and median completion time for each condition.

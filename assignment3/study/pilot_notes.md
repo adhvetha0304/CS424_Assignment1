@@ -33,15 +33,15 @@ For A1, which she answered using the static version, she selected S5 with 19 peo
 ### Changes and Decisions
 
 - **Problem:** The participant initially found the static page confusing and mainly used the heatmap rather than the reference table.
-- **Planned change:** Add a short explanation that the heatmap shows occupancy counts and the reference table provides noise levels and other observation details.
+- **Change implemented:** Added a short explanation that the heatmap shows occupancy counts and the reference table provides noise levels and other observation details.
 - **Reason:** This should help participants understand how to use both parts of the static visualization before the timed questions.
 
 The study questions, answer key, and interactive features will remain unchanged.
 
 ## Final Decisions Before Main Study
 
-- **Changes made after pilot:** Static visualization orientation text and practice instructions still to be finalized.
-- **Final study materials frozen on:** To be recorded after the final changes are published and checked.
-- **Main study started:** To be recorded when P01 begins the timed evaluation.
+- **Changes made after pilot:** Updated the static visualization description to explain the heatmap and reference table. Regenerated both the main and practice static pages. The analytical questions, scoring rules, and interactive functionality were unchanged.
+- **Final study materials frozen on:** November 15, 2026, after confirming the updated pages were published and working.
+- **Main study started:** November 15, 2026.
 
 Pilot results will not be included in the main study analysis.
