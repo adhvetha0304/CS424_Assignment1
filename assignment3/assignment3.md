@@ -122,7 +122,7 @@ Interactive had a lower mean completion time by **9.25 seconds per task** overal
 
 ### Differences Between Participants and Presentation Orders
 
-Seven of the ten participants had a lower average task time with Interactive. However, this was not consistent across everyone. For example, P05 averaged 82.0 seconds with Static and 30.5 seconds with Interactive, while P06 averaged 23.5 seconds with Static and 45.0 seconds with Interactive.
+Although seven of the ten participants had a lower average task time with Interactive, the size of the differences varied. Five participants were at least eight seconds faster with Interactive, three had differences of two seconds or less, and two were more than two seconds faster with Static. For example, P05 averaged 82.0 seconds with Static and 30.5 seconds with Interactive, while P06 averaged 23.5 seconds with Static and 45.0 seconds with Interactive.
 
 ![Mean completion time by participant](analysis/participant_times.png)
 
@@ -177,7 +177,7 @@ The study included only 10 participants, with six beginners and four intermediat
 
 Participants also needed different amounts of time to become comfortable with the visualization and questions. Although I provided practice and counterbalanced the starting condition, the results still suggest learning and order effects. Task A always came before Task B within each condition, which could also influence task-level timing differences.
 
-The question variants were designed to be comparable, but they were not necessarily identical in difficulty. Completion times were recorded manually, and one early time was reported approximately. All participants answered correctly, so this evaluation could not distinguish the designs through accuracy.
+The question variants were designed to be comparable, but they were not necessarily identical in difficulty. Completion times were recorded manually, and one early time was reported approximately. For P01 and P05, the exact wording of eight correct responses was not recorded, which limits the detail available for independently reviewing those answers. All participants answered correctly, so this evaluation could not distinguish the designs through accuracy.
 
 ### Conclusion
 
