@@ -1,41 +1,41 @@
 participant_id,visualization_familiarity,condition_order,condition,task_type,variant,task_order,response,accuracy,time_seconds,timed_out,device,notes
-P01,Beginner,Static-Interactive,Static,A,A1,1,"Correct answer reported; exact wording not recorded",1,90,0,,"A1 time reported as approximately 1.5 minutes"
-P01,Beginner,Static-Interactive,Static,B,B1,2,"Correct answer reported; exact wording not recorded",1,33,0,,
-P01,Beginner,Static-Interactive,Interactive,A,A2,3,"Correct answer reported; exact wording not recorded",1,24,0,,
-P01,Beginner,Static-Interactive,Interactive,B,B2,4,"Correct answer reported; exact wording not recorded",1,26,0,,
-P02,Intermediate,Static-Interactive,Static,A,A2,1,"Session 4, 4+2=6",1,20,0,"My laptop","Needed approximately 2-3 minutes of initial familiarization; preferred interactive"
-P02,Intermediate,Static-Interactive,Static,B,B2,2,"Common Area, 6 people",1,26,0,"My laptop",
-P02,Intermediate,Static-Interactive,Interactive,A,A1,3,"S2, 8+3=11",1,23,0,"My laptop",
-P02,Intermediate,Static-Interactive,Interactive,B,B1,4,"Gym, 6 people",1,7,0,"My laptop",
-P03,Intermediate,Static-Interactive,Static,A,A1,1,"S2, 11 people",1,34,0,"My laptop","Preferred interactive; found switching between the reference table and heatmap confusing and time-consuming"
-P03,Intermediate,Static-Interactive,Static,B,B2,2,"Common Area, 6 people",1,14,0,"My laptop",
-P03,Intermediate,Static-Interactive,Interactive,A,A2,3,"S4, 6 people",1,11,0,"My laptop",
-P03,Intermediate,Static-Interactive,Interactive,B,B1,4,"Gym, 6 people",1,8,0,"My laptop",
-P04,Beginner,Static-Interactive,Static,A,A2,1,"S4, 6 people",1,43,0,"My laptop","Preferred interactive"
-P04,Beginner,Static-Interactive,Static,B,B1,2,"Gym, 6 people",1,10,0,"My laptop",
-P04,Beginner,Static-Interactive,Interactive,A,A1,3,"S2, 11 people",1,23,0,"My laptop",
-P04,Beginner,Static-Interactive,Interactive,B,B2,4,"Common Area, 6 people",1,8,0,"My laptop",
-P05,Beginner,Static-Interactive,Static,A,A1,1,"Correct answer reported; exact wording not recorded",1,118,0,,"A1 completed close to the 120-second limit"
-P05,Beginner,Static-Interactive,Static,B,B1,2,"Correct answer reported; exact wording not recorded",1,46,0,,
-P05,Beginner,Static-Interactive,Interactive,A,A2,3,"Correct answer reported; exact wording not recorded",1,34,0,,
-P05,Beginner,Static-Interactive,Interactive,B,B2,4,"Correct answer reported; exact wording not recorded",1,27,0,,
-P06,Intermediate,Interactive-Static,Interactive,A,A1,1,"S2, 11 people",1,36,0,"My laptop","Needed approximately 2-3 minutes of initial familiarization; preferred interactive"
-P06,Intermediate,Interactive-Static,Interactive,B,B2,2,"Common Area, 6 people",1,54,0,"My laptop",
-P06,Intermediate,Interactive-Static,Static,A,A2,3,"Session 4, 6 people",1,37,0,"My laptop",
-P06,Intermediate,Interactive-Static,Static,B,B1,4,"Gym, 6 people",1,10,0,"My laptop",
-P07,Beginner,Interactive-Static,Interactive,A,A2,1,"S4, 6 people",1,37,0,"My laptop","Preferred interactive; needed time to understand the unfamiliar questions"
-P07,Beginner,Interactive-Static,Interactive,B,B1,2,"Gym, 6 people",1,31,0,"My laptop",
-P07,Beginner,Interactive-Static,Static,A,A1,3,"S2, 11 people",1,43,0,"My laptop",
-P07,Beginner,Interactive-Static,Static,B,B2,4,"Common Area, 6 people",1,8,0,"My laptop",
-P08,Intermediate,Interactive-Static,Interactive,A,A1,1,"S2, 11 people",1,29,0,"My laptop",
-P08,Intermediate,Interactive-Static,Interactive,B,B1,2,"Gym, 6 people",1,8,0,"My laptop",
-P08,Intermediate,Interactive-Static,Static,A,A2,3,"S4, 6 people",1,31,0,"My laptop",
-P08,Intermediate,Interactive-Static,Static,B,B2,4,"Common Area, 6 people",1,7,0,"My laptop",
-P09,Beginner,Interactive-Static,Interactive,A,A2,1,"S4, 6 people",1,38,0,"My laptop",
-P09,Beginner,Interactive-Static,Interactive,B,B2,2,"Common Area, 6 people",1,16,0,"My laptop",
-P09,Beginner,Interactive-Static,Static,A,A1,3,"Session 2, 11 people",1,43,0,"My laptop",
-P09,Beginner,Interactive-Static,Static,B,B1,4,"Gym, 6 people",1,8,0,"My laptop",
-P10,Beginner,Interactive-Static,Interactive,A,A1,1,"S2, 11 people",1,52,0,"My laptop","Participant was unfamiliar with the tasks and needed more time to understand them"
-P10,Beginner,Interactive-Static,Interactive,B,B1,2,"Gym, 6 people",1,23,0,"My laptop",
-P10,Beginner,Interactive-Static,Static,A,A2,3,"S4, 6 people",1,63,0,"My laptop",
-P10,Beginner,Interactive-Static,Static,B,B2,4,"Common Area, 6 people",1,16,0,"My laptop",
+P01,Beginner,Static-Interactive,Static,A,A1,1,Correct answer reported; exact wording not recorded,1,90,0,My laptop,A1 time reported as approximately 1.5 minutes
+P01,Beginner,Static-Interactive,Static,B,B1,2,Correct answer reported; exact wording not recorded,1,33,0,My laptop,
+P01,Beginner,Static-Interactive,Interactive,A,A2,3,Correct answer reported; exact wording not recorded,1,24,0,My laptop,
+P01,Beginner,Static-Interactive,Interactive,B,B2,4,Correct answer reported; exact wording not recorded,1,26,0,My laptop,
+P02,Intermediate,Static-Interactive,Static,A,A2,1,"Session 4, 4+2=6",1,20,0,My laptop,Needed approximately 2-3 minutes of initial familiarization; preferred interactive
+P02,Intermediate,Static-Interactive,Static,B,B2,2,"Common Area, 6 people",1,26,0,My laptop,
+P02,Intermediate,Static-Interactive,Interactive,A,A1,3,"S2, 8+3=11",1,23,0,My laptop,
+P02,Intermediate,Static-Interactive,Interactive,B,B1,4,"Gym, 6 people",1,7,0,My laptop,
+P03,Intermediate,Static-Interactive,Static,A,A1,1,"S2, 11 people",1,34,0,My laptop,Preferred interactive; found switching between the reference table and heatmap confusing and time-consuming
+P03,Intermediate,Static-Interactive,Static,B,B2,2,"Common Area, 6 people",1,14,0,My laptop,
+P03,Intermediate,Static-Interactive,Interactive,A,A2,3,"S4, 6 people",1,11,0,My laptop,
+P03,Intermediate,Static-Interactive,Interactive,B,B1,4,"Gym, 6 people",1,8,0,My laptop,
+P04,Beginner,Static-Interactive,Static,A,A2,1,"S4, 6 people",1,43,0,My laptop,Preferred interactive
+P04,Beginner,Static-Interactive,Static,B,B1,2,"Gym, 6 people",1,10,0,My laptop,
+P04,Beginner,Static-Interactive,Interactive,A,A1,3,"S2, 11 people",1,23,0,My laptop,
+P04,Beginner,Static-Interactive,Interactive,B,B2,4,"Common Area, 6 people",1,8,0,My laptop,
+P05,Beginner,Static-Interactive,Static,A,A1,1,Correct answer reported; exact wording not recorded,1,118,0,My laptop,A1 completed close to the 120-second limit
+P05,Beginner,Static-Interactive,Static,B,B1,2,Correct answer reported; exact wording not recorded,1,46,0,My laptop,
+P05,Beginner,Static-Interactive,Interactive,A,A2,3,Correct answer reported; exact wording not recorded,1,34,0,My laptop,
+P05,Beginner,Static-Interactive,Interactive,B,B2,4,Correct answer reported; exact wording not recorded,1,27,0,My laptop,
+P06,Intermediate,Interactive-Static,Interactive,A,A1,1,"S2, 11 people",1,36,0,My laptop,Needed approximately 2-3 minutes of initial familiarization; preferred interactive
+P06,Intermediate,Interactive-Static,Interactive,B,B2,2,"Common Area, 6 people",1,54,0,My laptop,
+P06,Intermediate,Interactive-Static,Static,A,A2,3,"Session 4, 6 people",1,37,0,My laptop,
+P06,Intermediate,Interactive-Static,Static,B,B1,4,"Gym, 6 people",1,10,0,My laptop,
+P07,Beginner,Interactive-Static,Interactive,A,A2,1,"S4, 6 people",1,37,0,My laptop,Preferred interactive; needed time to understand the unfamiliar questions
+P07,Beginner,Interactive-Static,Interactive,B,B1,2,"Gym, 6 people",1,31,0,My laptop,
+P07,Beginner,Interactive-Static,Static,A,A1,3,"S2, 11 people",1,43,0,My laptop,
+P07,Beginner,Interactive-Static,Static,B,B2,4,"Common Area, 6 people",1,8,0,My laptop,
+P08,Intermediate,Interactive-Static,Interactive,A,A1,1,"S2, 11 people",1,29,0,My laptop,
+P08,Intermediate,Interactive-Static,Interactive,B,B1,2,"Gym, 6 people",1,8,0,My laptop,
+P08,Intermediate,Interactive-Static,Static,A,A2,3,"S4, 6 people",1,31,0,My laptop,
+P08,Intermediate,Interactive-Static,Static,B,B2,4,"Common Area, 6 people",1,7,0,My laptop,
+P09,Beginner,Interactive-Static,Interactive,A,A2,1,"S4, 6 people",1,38,0,My laptop,
+P09,Beginner,Interactive-Static,Interactive,B,B2,2,"Common Area, 6 people",1,16,0,My laptop,
+P09,Beginner,Interactive-Static,Static,A,A1,3,"Session 2, 11 people",1,43,0,My laptop,
+P09,Beginner,Interactive-Static,Static,B,B1,4,"Gym, 6 people",1,8,0,My laptop,
+P10,Beginner,Interactive-Static,Interactive,A,A1,1,"S2, 11 people",1,52,0,My laptop,Participant was unfamiliar with the tasks and needed more time to understand them
+P10,Beginner,Interactive-Static,Interactive,B,B1,2,"Gym, 6 people",1,23,0,My laptop,
+P10,Beginner,Interactive-Static,Static,A,A2,3,"S4, 6 people",1,63,0,My laptop,
+P10,Beginner,Interactive-Static,Static,B,B2,4,"Common Area, 6 people",1,16,0,My laptop,
