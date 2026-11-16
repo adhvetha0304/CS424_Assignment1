@@ -157,7 +157,7 @@ The study included only 10 participants, with six beginners and four intermediat
 
 Participants also needed different amounts of time to become comfortable with the visualization and questions. Although I provided practice and counterbalanced the starting condition, the results still suggest learning and order effects. Task A always came before Task B within each condition, which could also influence task-level timing differences.
 
-The question variants were designed to be comparable, but they were not necessarily identical in difficulty. Completion times were recorded manually, and one early time was reported approximately. The device was not documented for every participant. All participants answered correctly, so this evaluation could not distinguish the designs through accuracy.
+The question variants were designed to be comparable, but they were not necessarily identical in difficulty. Completion times were recorded manually, and one early time was reported approximately. All participants answered correctly, so this evaluation could not distinguish the designs through accuracy.
 
 ### Conclusion
 
