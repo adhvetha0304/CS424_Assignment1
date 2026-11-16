@@ -114,8 +114,6 @@ Please answer independently and as accurately as possible. You will have up to t
 
 I will record your answers and how long you take, using an anonymous participant ID. You will not receive feedback about whether your answers are correct during the study.
 
-Participation is voluntary, and you can stop at any time."
-
 Before the timed questions, I demonstrate how to read the heatmap, use the reference table, and use the interactive controls. The demonstration uses a separate practice example with different data, so it doesn't reveal any study answers.
 
 ## Study Procedure
@@ -131,7 +129,6 @@ Before the timed questions, I demonstrate how to read the heatmap, use the refer
 9. Switch to the second condition and repeat with the assigned variants.
 10. Note any difficulties or comments, without identifying the participant.
 
-No hints or correctness feedback are given between questions.
 
 I'll use the same laptop, browser, screen size, and 100% zoom for everyone when possible, and time with a stopwatch. Any difference in device or setting gets recorded.
 
@@ -175,7 +172,7 @@ Before the main study, I'll try the procedure with one or two people who won't b
 - Two minutes is the right time limit.
 - Answers and times can be recorded consistently.
 
-Problems and changes go in `assignment3/study/pilot_notes.md`. The visualizations, practice materials, questions, and scoring are drafted before the pilot and revised afterward if needed. Once the main study begins, nothing changes.
+Problems and changes go in `assignment3/study/pilot_notes.md`. 
 
 ## Analysis Plan
 
