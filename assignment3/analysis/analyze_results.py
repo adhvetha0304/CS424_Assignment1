@@ -208,3 +208,42 @@ if "plt" in globals():
     plt.close(fig)
 
     print("Saved assignment3/analysis/condition_accuracy.png")
+
+
+# Paired completion times by participant
+if "plt" in globals():
+    ids = sorted(participants)
+    static_times = [
+        mean(participants[pid]["Static"]) for pid in ids
+    ]
+    interactive_times = [
+        mean(participants[pid]["Interactive"]) for pid in ids
+    ]
+
+    fig, ax = plt.subplots(figsize=(9, 4.8))
+    x = list(range(len(ids)))
+
+    for i, (s, t) in enumerate(zip(static_times, interactive_times)):
+        ax.plot([i, i], [s, t], color="#CDD1DC", linewidth=1.5, zorder=1)
+
+    ax.scatter(
+        x, static_times, color="#F6A0AC",
+        edgecolors="#4F5568", s=65, label="Static", zorder=3
+    )
+    ax.scatter(
+        x, interactive_times, color="#A1C3E7",
+        edgecolors="#4F5568", s=65, label="Interactive", zorder=3
+    )
+
+    ax.set_xticks(x, ids)
+    ax.set_ylabel("Mean completion time (seconds)")
+    ax.set_title("Completion Time by Participant")
+    ax.set_ylim(bottom=0)
+    ax.set_axisbelow(True)
+    ax.yaxis.grid(True, color="#E8EAF0", linewidth=0.7)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(OUT / "participant_times.png", dpi=180)
+    plt.close(fig)
+
+    print("Saved assignment3/analysis/participant_times.png")

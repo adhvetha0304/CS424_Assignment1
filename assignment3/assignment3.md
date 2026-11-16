@@ -9,6 +9,8 @@ I compared two versions of the same occupancy heatmap:
 - **Static visualization:** Shows occupancy counts by space and session using a heatmap. A reference table below the chart provides noise levels, activities, dates, times, and other observation details.
 - **Interactive visualization:** Uses the same heatmap and occupancy color scale, but allows users to select a space and noise level to highlight matching sessions. Users can also click cells to inspect observation details and double-click to clear a selection.
 
+I built the heatmap using Vega-Lite, with dropdown controls that highlight observations matching the selected space and noise level.
+
 The static version retains all the information needed to answer the questions. I included the reference table so that participants could check noise levels without depending on interactive controls. Both versions use the same underlying observations.
 
 I expected the noise highlighting to be particularly useful when a question required identifying sessions that satisfied a noise condition before comparing occupancy. I did not expect interaction to be equally helpful for simple occupancy comparisons, where the required counts were already visible.
@@ -64,13 +66,15 @@ The final materials were verified and frozen on November 15, before the main stu
 
 ### Main Study
 
+I recruited participants from people I knew, including my roommates, friends, cousins, and parents.
+
 I evaluated the visualizations with 10 participants: six classified themselves as beginners and four as intermediate in chart familiarity. Every participant completed four timed questions, giving 40 individual task records.
 
 Before the timed questions, participants received the same instructions and practiced using separate synthetic data. Practice included reading the static reference table and using the interactive highlighting and cell-selection controls. Practice was not timed.
 
-Participants then completed their assigned questions. Timing started when the visualization and question were visible and stopped when they provided their final answer. I recorded their answers, times, and relevant observations without using names in the dataset.
+Participants then completed their assigned questions. Timing started when the visualization and question were visible and stopped when they provided their final answer. I recorded participants' answers, completion times, and relevant observations using anonymous participant IDs. For P01 and P05, all eight responses were correct, but I did not record their exact wording.
 
-Five participants started with Static and five with Interactive. Each condition contained 20 completed tasks. Most recorded main-study sessions used my laptop; the device was not documented for two participants. These differences are considered in the limitations.
+Five participants started with Static and five with Interactive. Each condition contained 20 completed tasks. All participants completed the evaluation using my laptop.
 
 The individual measurements are preserved in [results.csv](study/results.csv). Each row identifies the anonymous participant, familiarity, presentation order, visualization condition, task variant, task position, recorded answer, correctness, completion time, timeout status, device, and notes.
 
@@ -114,11 +118,27 @@ Interactive had a lower mean completion time by **9.25 seconds per task** overal
 
 **H1 was supported descriptively:** Task A was substantially faster with Interactive. Highlighting matching noise conditions provided a direct way to narrow the relevant sessions, while Static required participants to move between the reference table and heatmap.
 
-**H2 was broadly consistent with the results:** Task B times were relatively close, although Static was three seconds faster on average. During the evaluation, I noticed that some participants hesitated over whether they were supposed to use the interactive dropdown controls for Task B. Those controls were not necessary for comparing the already-visible occupancy counts. This extra decision may have contributed to the longer interactive times.
+**H2 was broadly consistent with the results:** Task B times were relatively close, with Static three seconds faster on average. However, all ten participants completed Task B faster in their second condition, regardless of which version they used first. This suggests that familiarity with the task may have influenced completion times more than the interaction itself.
 
 ### Differences Between Participants and Presentation Orders
 
 Seven of the ten participants had a lower average task time with Interactive. However, this was not consistent across everyone. For example, P05 averaged 82.0 seconds with Static and 30.5 seconds with Interactive, while P06 averaged 23.5 seconds with Static and 45.0 seconds with Interactive.
+
+![Mean completion time by participant](analysis/participant_times.png)
+
+*Figure 4. Paired participant averages show that the difference between Static and Interactive varied across participants.*
+
+The overall mean difference was influenced by two participants. P01 and P05 had particularly long Static completion times, including 90 and 118 seconds on Task A1. The 90-second time was reported approximately. The median paired difference was 5.00 seconds, and excluding P01 and P05 reduced the mean paired difference to 0.56 seconds. Therefore, the overall average alone is not strong evidence that Interactive was consistently faster.
+
+Looking specifically at Task A, nine of the ten participants completed it faster with Interactive. This included all five participants who used Interactive first, with an average advantage of 5.00 seconds. Since these participants used Static second, the Task A result suggests that highlighting helped with the noise-related comparison even when the presentation order could have favored Static.
+
+The Task A results by presentation order were:
+
+| Presentation order | Static mean | Interactive mean | Interactive faster |
+|---|---:|---:|---:|
+| Static first (n=5) | 61.00 s | 23.00 s | 4/5 |
+| Interactive first (n=5) | 43.40 s | 38.40 s | 5/5 |
+| **Overall (n=10)** | **52.20 s** | **30.70 s** | **9/10** |
 
 Presentation order also showed a substantial difference:
 
@@ -139,7 +159,7 @@ The most useful finding was that interaction helped with some analytical tasks m
 
 The static version was still a meaningful alternative because its reference table contained the same noise information. However, some participants found it inconvenient to switch between the table and the heatmap. One participant specifically mentioned that moving back and forth between them felt confusing and time-consuming.
 
-Task B showed the opposite pattern. Because the occupancy counts were already visible, the interactive controls did not add much analytical value. Some participants were unsure whether they should use the dropdowns, which may have added unnecessary effort. This was a useful reminder that interaction is not automatically beneficial.
+Task B showed a different pattern. The occupancy counts were already visible in both versions, so the highlighting controls were not needed for this comparison. All ten participants completed Task B faster in their second condition, suggesting that practice and familiarity may have had a greater influence than interaction. This reminded me that adding interaction does not automatically improve performance.
 
 Several participants said they preferred Interactive, but their preferences did not always correspond to faster completion times. I therefore treated their comments as usability observations rather than evidence of a universal performance advantage.
 

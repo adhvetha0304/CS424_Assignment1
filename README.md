@@ -1,6 +1,6 @@
 # CS 424: Shared Spaces Visualization
 
-This repository contains my work for CS 424 Assignments 1 and 2. I collected 28 observations across seven sessions in four shared spaces and used the data to explore differences in occupancy, activity, and noise levels.
+This repository contains my work for CS 424 Assignments 1, 2, and 3. I collected 28 observations across seven sessions in four shared spaces and used the data to explore differences in occupancy, activity, and noise levels.
 
 For Assignment 2, I explored different visualization approaches and developed an interactive visualization to compare occupancy across spaces and sessions while allowing individual observations to be examined in more detail.
 
@@ -8,6 +8,7 @@ For Assignment 2, I explored different visualization approaches and developed an
 
 - [Assignment 1](data/assignment.md)
 - [Assignment 2](assignment2/assignment2.md)
+- [Assignment 3](assignment3/assignment3.md)
 
 ## Dataset
 
@@ -70,6 +71,25 @@ The current visualization is then available at:
 
 `http://localhost:8000/assignment2/visualization/iteration2.html`
 
+
+
+## Assignment 3: Interaction and Evaluation
+
+Assignment 3 compares static and interactive versions of the shared-spaces heatmap using a study with 10 participants. See the [Assignment 3 report](assignment3/assignment3.md) for the study design and results.
+
+### Reproducing Assignment 3
+
+Install the Python dependencies using the command in Setup and Reproduction above. From the repository root, run:
+
+    python assignment3/build_static.py
+    python assignment3/build_interactive.py
+    python assignment3/build_practice.py
+    python assignment3/analysis/analyze_results.py
+
+To view the visualizations locally, start a server with `python -m http.server 8000` and open:
+
+- [Static visualization](http://localhost:8000/assignment3/visualization/static.html)
+- [Interactive visualization](http://localhost:8000/assignment3/visualization/interactive.html)
 
 ## Limitations
 
