@@ -116,7 +116,7 @@ Interactive had a lower mean completion time by **9.25 seconds per task** overal
 
 *Figure 3. Interaction was associated with a larger time improvement for Task A, while Static was slightly faster for Task B.*
 
-**H1 was supported descriptively:** Task A was substantially faster with Interactive. Highlighting matching noise conditions provided a direct way to narrow the relevant sessions, while Static required participants to move between the reference table and heatmap.
+**H1 was supported modestly:** Task A was faster with Interactive for nine of ten participants (median paired difference 8.5 seconds), although the 21.5-second mean difference was strongly influenced by P01 and P05. Highlighting matching noise conditions provided a direct way to narrow the relevant sessions, while Static required participants to move between the reference table and heatmap.
 
 **H2 was broadly consistent with the results:** Task B times were relatively close, with Static three seconds faster on average. However, all ten participants completed Task B faster in their second condition, regardless of which version they used first. This suggests that familiarity with the task may have influenced completion times more than the interaction itself.
 
@@ -155,7 +155,7 @@ The reproducible analysis is available in [analyze_results.py](analysis/analyze_
 
 ## Task 5: Reflection and Recommendations
 
-The most useful finding was that interaction helped with some analytical tasks much more than others. For Task A, participants needed to identify sessions satisfying a noise condition before comparing occupancy. The interactive highlighting matched that need and reduced the amount of information participants had to search through manually.
+The most useful finding was that interaction appeared to help with some analytical tasks more than others. For Task A, participants needed to identify sessions satisfying a noise condition before comparing occupancy. The interactive highlighting matched that need and reduced the amount of information participants had to search through manually.
 
 The static version was still a meaningful alternative because its reference table contained the same noise information. However, some participants found it inconvenient to switch between the table and the heatmap. One participant specifically mentioned that moving back and forth between them felt confusing and time-consuming.
 
@@ -167,7 +167,7 @@ Several participants said they preferred Interactive, but their preferences did 
 
 First, I would make the static version easier to navigate by placing noise information closer to the corresponding heatmap cells, reducing the need to repeatedly switch between the chart and reference table.
 
-Second, I would improve the interactive instructions so that it is clearer when the dropdowns are useful and when participants can simply read the heatmap. I would also consider making the currently selected filters more visually obvious.
+Second, I would add a short untimed warm-up question to the practice session. Four participants (P02, P06, P07, and P10) had notes indicating that they needed extra time to become familiar with the page or questions, and all ten participants completed Task B faster in their second condition. This suggests that some of the measured differences reflected learning rather than the interface alone.
 
 Finally, I would explore a more direct way to compare occupancy between two sessions. Task B did not particularly benefit from the existing controls, so a comparison-focused interaction could be more useful than noise highlighting for that type of question.
 
@@ -181,7 +181,7 @@ The question variants were designed to be comparable, but they were not necessar
 
 ### Conclusion
 
-In this evaluation, Interactive was faster overall, with its clearest advantage on noise-constrained Task A questions. Static was slightly faster on the simpler Task B comparisons, and both versions achieved the same accuracy.
+In this evaluation, Interactive had a lower average completion time (25.75 s vs. 35.00 s), but much of that gap came from two participants (P01 and P05) who were slow on their first static question; without them, the average difference was about 0.6 s. The clearest, though modest, advantage was on Task A: nine of ten participants were faster with Interactive, including all five who used it first (median paired difference 8.5 s). Task B showed no clear effect of the interface, since every participant was faster in their second condition. Accuracy was 100% in both conditions.
 
 The results suggest that interaction is most useful when it directly supports the analytical operation a person needs to perform. Adding controls without a clear purpose can create additional decisions rather than make a task easier. A larger study with more varied questions and tighter control over familiarization would help test these observations further.
 

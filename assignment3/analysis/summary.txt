@@ -32,3 +32,22 @@ P10: static=39.50s, interactive=37.50s, static-minus-interactive=+2.00s
 
 Mean paired difference: +9.25s
 Participants faster with interactive: 7/10
+
+ROBUSTNESS CHECKS
+Median paired difference: +5.00s
+Mean paired difference excluding P01 and P05: +0.56s
+Participants at least 8s faster with Interactive: 5
+Participants within 2s either way: 3
+Participants more than 2s faster with Static: 2
+
+TASK A BY PRESENTATION ORDER
+Static-Interactive (n=5): static mean=61.00s, interactive mean=23.00s, Interactive faster for 4/5
+Interactive-Static (n=5): static mean=43.40s, interactive mean=38.40s, Interactive faster for 5/5
+Median paired difference (static - interactive): +8.50s
+Participants faster in their second condition: 4/10
+
+TASK B BY PRESENTATION ORDER
+Static-Interactive (n=5): static mean=25.80s, interactive mean=15.20s, Interactive faster for 5/5
+Interactive-Static (n=5): static mean=9.80s, interactive mean=26.40s, Interactive faster for 0/5
+Median paired difference (static - interactive): +0.50s
+Participants faster in their second condition: 10/10

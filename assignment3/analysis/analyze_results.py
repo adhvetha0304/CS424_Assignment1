@@ -93,6 +93,42 @@ lines.append(
     f"{sum(d > 0 for d in diffs)}/10"
 )
 
+
+lines.append("\nROBUSTNESS CHECKS")
+lines.append(f"Median paired difference: {median(diffs):+.2f}s")
+core = [d for pid, d in zip(sorted(participants), diffs) if pid not in ("P01", "P05")]
+lines.append(f"Mean paired difference excluding P01 and P05: {mean(core):+.2f}s")
+lines.append(f"Participants at least 8s faster with Interactive: {sum(d >= 8 for d in diffs)}")
+lines.append(f"Participants within 2s either way: {sum(abs(d) <= 2 for d in diffs)}")
+lines.append(f"Participants more than 2s faster with Static: {sum(d < -2 for d in diffs)}")
+
+def task_row(pid, task, condition):
+    return next(r for r in rows if r["participant_id"] == pid
+                and r["task_type"] == task and r["condition"] == condition)
+
+for task in ("A", "B"):
+    lines.append(f"\nTASK {task} BY PRESENTATION ORDER")
+    paired = []
+    for order in ("Static-Interactive", "Interactive-Static"):
+        pids = sorted({r["participant_id"] for r in rows if r["condition_order"] == order})
+        static = [task_row(p, task, "Static")["time_seconds"] for p in pids]
+        interactive = [task_row(p, task, "Interactive")["time_seconds"] for p in pids]
+        paired += [a - b for a, b in zip(static, interactive)]
+        lines.append(
+            f"{order} (n={len(pids)}): static mean={mean(static):.2f}s, "
+            f"interactive mean={mean(interactive):.2f}s, "
+            f"Interactive faster for {sum(a > b for a, b in zip(static, interactive))}/{len(pids)}"
+        )
+    lines.append(f"Median paired difference (static - interactive): {median(paired):+.2f}s")
+    second_faster = 0
+    for pid in participants:
+        records = sorted(
+            (r for r in rows if r["participant_id"] == pid and r["task_type"] == task),
+            key=lambda r: int(r["task_order"])
+        )
+        second_faster += records[1]["time_seconds"] < records[0]["time_seconds"]
+    lines.append(f"Participants faster in their second condition: {second_faster}/10")
+
 report = "\n".join(lines) + "\n"
 (OUT / "summary.txt").write_text(report, encoding="utf-8")
 print(report)
