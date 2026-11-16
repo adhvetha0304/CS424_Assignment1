@@ -109,7 +109,7 @@ else:
     values = [summarize(groups[c])["mean"] for c in conditions]
 
     fig, ax = plt.subplots(figsize=(7, 4.5))
-    bars = ax.bar(conditions, values, color=["#667f9c", "#43a7a0"])
+    bars = ax.bar(conditions, values, color=["#F6A0AC", "#A1C3E7"])
     ax.set_ylabel("Mean completion time (seconds)")
     ax.set_title("Average Task Completion Time")
     ax.set_ylim(0, max(values) * 1.25)
@@ -130,8 +130,8 @@ else:
     width = 0.35
 
     for offset, condition, color in [
-        (-width / 2, "Static", "#667f9c"),
-        (width / 2, "Interactive", "#43a7a0"),
+        (-width / 2, "Static", "#F6A0AC"),
+        (width / 2, "Interactive", "#A1C3E7"),
     ]:
         values = [
             summarize(groups[(condition, task)])["mean"]
@@ -170,7 +170,7 @@ if "plt" in globals():
     bars = ax.bar(
         conditions,
         accuracies,
-        color=["#667f9c", "#43a7a0"]
+        color=["#F6A0AC", "#A1C3E7"]
     )
 
     ax.set_ylim(0, 110)
