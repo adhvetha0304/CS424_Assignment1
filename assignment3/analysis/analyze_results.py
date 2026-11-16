@@ -120,6 +120,11 @@ else:
             f"{value:.2f}s",
             ha="center"
         )
+    for bar in ax.patches:
+        bar.set_edgecolor("#4F5568")
+        bar.set_linewidth(1.0)
+    ax.set_axisbelow(True)
+    ax.yaxis.grid(True, color="#E8EAF0", linewidth=0.7)
     fig.tight_layout()
     fig.savefig(OUT / "condition_times.png", dpi=180)
     plt.close(fig)
@@ -149,6 +154,11 @@ else:
     ax.set_ylabel("Mean completion time (seconds)")
     ax.set_title("Completion Time by Task Type")
     ax.legend()
+    for bar in ax.patches:
+        bar.set_edgecolor("#4F5568")
+        bar.set_linewidth(1.0)
+    ax.set_axisbelow(True)
+    ax.yaxis.grid(True, color="#E8EAF0", linewidth=0.7)
     fig.tight_layout()
     fig.savefig(OUT / "task_type_times.png", dpi=180)
     plt.close(fig)
@@ -185,6 +195,11 @@ if "plt" in globals():
             ha="center"
         )
 
+    for bar in ax.patches:
+        bar.set_edgecolor("#4F5568")
+        bar.set_linewidth(1.0)
+    ax.set_axisbelow(True)
+    ax.yaxis.grid(True, color="#E8EAF0", linewidth=0.7)
     fig.tight_layout()
     fig.savefig(
         OUT / "condition_accuracy.png",
